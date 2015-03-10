@@ -1,12 +1,70 @@
 <!DOCTYPE html>
 <!-- This site was created in Webflow. http://www.webflow.com-->
-<!-- Last Published: Mon Mar 09 2015 02:46:37 GMT+0000 (UTC) -->
+<!-- Last Published: Mon Mar 09 2015 22:48:47 GMT+0000 (UTC) -->
 <html data-wf-site="54f9268573ee3d0b05795f70" data-wf-page="54f9268573ee3d0b05795f78">
 <head>
+  <!-- Adding Firebase code, differing from Webflow -->
+  <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+  <script>
+	  var ref = new Firebase("https://goconverse.firebaseio.com/");
+		
+		//Test variable value
+		var userId;
+		function createCredentials()
+		{
+		ref.createUser(
+		{
+		  email: document.getElementById('Email').value,
+		  password: document.getElementById('Password').value
+		}
+		, 
+		function(error, userData) {
+		  if (error) {
+			switch (error.code) {
+			  case "email_TAKEN":
+				console.log("The new user account cannot be created because the email is already in use.");
+				break;
+			  case "INVALID_email":
+				console.log("The specified email is not a valid email.");
+				break;
+			  default:
+				console.log("Error creating user:", error);
+			}
+		  } 
+		  else 
+		  {
+			console.log("Successfully created user account with uid:", userData.uid);
+			// Test code
+			userId = userData.uid;
+			console.log("Hello", userId);
+		  }
+		  console.log(userData.uid);
+		  userId = userData.uid;
+		});
+		
+		// Test line
+		console.log(userId);
+		console.log(userId);
+		console.log(userId);
+		// Not a test
+		ref.set(
+		{
+			users: 
+			{
+				userId:
+				{
+					name: document.getElementById('Name').value,
+					why: document.getElementById('Why').value
+				}
+			}
+		})
+		}
+  </script>
+  <!-- Back to Webflow code -->
   <meta charset="utf-8">
-  <title>Contact - Simple Template</title>
-  <meta name="description" content="Simple is a responsive Webflow template, clean and professional for all type of business.">
-  <meta name="keywords" content="business, simple, creative, professional, agency, webflow, template, alzo, interaction">
+  <title>Sign Up - Converse</title>
+  <meta name="description" content="Sign up here to join Converse Alpha.">
+  <meta name="keywords" content="converse, global, chat, conversation, sign, up, apply, alpha, world, globe, international">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="Webflow">
   <link rel="stylesheet" type="text/css" href="css/normalize.css">
@@ -38,7 +96,7 @@
     <div class="w-container">
       <a class="w-nav-brand brand-scroll" href="index.html"><img src="images/converseBlackTrans.png" width="185" alt="54f92ec600343eb71403601d_converseBlackTrans.png">
       </a>
-      <nav class="w-nav-menu" role="navigation"><a class="w-nav-link nav-link nav-scroll" href="index.html">Home</a><a class="w-nav-link nav-link nav-scroll" href="contact.html">Sign Up</a>
+      <nav class="w-nav-menu" role="navigation"><a class="w-nav-link nav-link nav-scroll" href="index.html">Home</a><a class="w-nav-link nav-link nav-scroll" href="signup.html">Sign Up</a>
       </nav>
       <div class="w-nav-button">
         <div class="w-icon-nav-menu"></div>
@@ -49,7 +107,7 @@
     <div class="w-container">
       <a class="w-nav-brand barnd" href="index.html"><img src="images/converseWhiteTrans.png" width="185" alt="54f92e1073ee3d0b0579604b_converseWhiteTrans.png">
       </a>
-      <nav class="w-nav-menu nav-menu" role="navigation"><a class="w-nav-link nav-link" href="index.html">Home</a><a class="w-nav-link nav-link" href="contact.html">Sign Up</a>
+      <nav class="w-nav-menu nav-menu" role="navigation"><a class="w-nav-link nav-link" href="index.html">Home</a><a class="w-nav-link nav-link" href="signup.html">Sign Up</a>
       </nav>
       <div class="w-nav-button menu-ham">
         <div class="w-icon-nav-menu"></div>
@@ -76,12 +134,12 @@
       <div class="div-form">
         <div class="w-form">
           <form class="w-clearfix" id="email-form" name="email-form" data-name="Email Form">
-            <input class="w-input text-field" id="name" type="text" placeholder="Enter your name" name="name" data-name="Name" required="required">
-            <input class="w-input text-field" id="Email" type="email" placeholder="Enter you email" name="Email" data-name="Email" required="required">
-            <input class="w-input text-field" id="Website" type="text" placeholder="Enter your website" name="Website" data-name="Website" required="required">
-            <textarea class="w-input text-area" id="Text-Area" placeholder="Type you text here..." name="Text-Area" data-name="Text Area" required="required"></textarea>
+            <input class="w-input text-field" id="Name" type="text" placeholder="Enter your name" name="name" data-name="Name" required="required">
+            <input class="w-input text-field" id="Email" type="email" placeholder="Enter your email" name="Email" data-name="Email" required="required">
+            <input class="w-input text-field" id="Password" type="text" placeholder="Enter a password" name="Password" data-name="Password" required="required">
+            <textarea class="w-input text-area" id="Why" placeholder="Why do you want to use Converse?" name="Why" data-name="Why" required="required"></textarea>
             <div class="div-spc">
-              <input class="w-button button s-button" type="submit" value="Submit Message" data-wait="Please wait...">
+              <input class="w-button button s-button" type="button" onclick="createCredentials()" value="Submit Application" data-wait="Please wait...">
             </div>
           </form>
           <div class="w-form-done success">
@@ -103,9 +161,8 @@
             <h3 class="pricing-text cl">ADDRESS</h3>
           </div>
           <div class="div-spc">
-            <p>Level 5,
-              <br>245 Quigley Bvld,
-              <br>Azuire</p>
+            <p>Somewhere in
+              <br>Kansas City, Missouri</p>
           </div>
         </div>
         <div class="w-col w-col-4 col-line" data-ix="move-line-contact">
@@ -114,8 +171,7 @@
             <h3 class="pricing-text cl">PHONE</h3>
           </div>
           <div class="div-spc">
-            <p>+61 9 211 3747
-              <br>+61 3 075 8371</p>
+            <p>+816 797 4277</p>
           </div>
         </div>
         <div class="w-col w-col-4 col-line" data-ix="move-line-contact">
@@ -124,9 +180,7 @@
             <h3 class="pricing-text cl">EMAIL</h3>
           </div>
           <div class="div-spc">
-            <p>mievent@reach.fr
-              <br>support@reach.com
-              <br>contact@mievent.com</p>
+            <p>startupsamuel@gmail.com</p>
           </div>
         </div>
       </div>
@@ -135,7 +189,7 @@
     </div>
   </div>
   <div class="map">
-    <div class="w-widget w-widget-map" data-widget-latlng="41.327546,19.818698" data-widget-style="terrain" data-widget-zoom="13" data-disable-scroll="1"></div>
+    <div class="w-widget w-widget-map" data-widget-latlng="39.099727,-94.578567" data-widget-style="roadmap" data-widget-zoom="12" data-disable-scroll="1" data-widget-tooltip="Based out of:"></div>
   </div>
   <div class="w-section footer">
     <div class="w-container center">
