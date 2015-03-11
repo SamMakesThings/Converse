@@ -5,11 +5,11 @@ Converse is a project that originated from the November Kansas City Startup Week
 
 Current features:
 - Users can register their email and password
+- Associated additional information with user accounts (name, age, country, etc.)
 
 Currently working on:
-- Associating additional information with user accounts (name, age, country, etc.)
 - Account email verification
-- Working log in page
+- Pretty log in page
 
 Planned features (in chronological order):
 - Messaging other users
