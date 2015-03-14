@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Sat Mar 14 2015 17:16:32 GMT+0000 (UTC) -->
+<html data-wf-site="54f9268573ee3d0b05795f70" data-wf-page="55045d28f0354d2f2b088275">
+<head>
+  <meta charset="utf-8">
+  <title>Log In - Converse</title>
+  <meta name="description" content="Simple is a responsive Webflow template, clean and professional for all type of business.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Webflow">
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="css/goconverse.webflow.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ["Lato:100,100italic,300,300italic,400,400italic,700,700italic,900,900italic","PT Serif:400,400italic,700,700italic","Raleway:200,300,regular,500,600,700"]
+      }
+    });
+  </script>
+  <script type="text/javascript" src="js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="apple-touch-icon" href="images/webclip.png">
+  <style>
+    .w-slider-nav-invert>div.w-active {
+        background-color: #00c2a2; !important
+    }
+    .w-slider-nav-invert>div {
+        background-color: #e5e5e5; !important
+    }
+  </style>
+  
+  <!-- Begin non-Webflow code -->
+  <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+  <script>
+	var ref = new Firebase("https://goconverse.firebaseio.com");
+	
+	
+	
+	// Firebase user authentication (email and password only)
+	function logIn()
+	{
+		// Change button value to waiting message
+		document.getElementById("Log In").setAttribute("value", "Please wait...");
+		
+		// Calling Firebase code
+		ref.authWithPassword({
+		  email    : document.getElementById("Email").value,
+		  password : document.getElementById("Password").value
+		}, 
+		function(error, authData) 
+		{
+		  if (error) 
+		  {
+			console.log("Login Failed!", error);
+		  } 
+		  else 
+		  {
+			console.log("Authenticated successfully with payload:", authData);
+			
+			// Redirect to placeholder page (will eventually be the main page)
+			window.location.href="placeholder.html";
+		  }
+		}
+		);
+	};
+  </script>
+  <!-- End non-Webflow code -->
+</head>
+<body>
+  <a class="w-inline-block go-top" href="#top" data-ix="hide"></a>
+  <div class="w-nav navigation" id="top" data-collapse="medium" data-animation="default" data-duration="400" data-contain="1">
+    <div class="w-container">
+      <a class="w-nav-brand barnd" href="index.html"><img src="images/converseWhiteTrans.png" width="185" alt="54f92e1073ee3d0b0579604b_converseWhiteTrans.png">
+      </a>
+      <nav class="w-nav-menu nav-menu" role="navigation"><a class="w-nav-link nav-link" href="index.html">Home</a><a class="w-nav-link nav-link" href="signup.html">Sign Up</a>
+      </nav>
+      <div class="w-nav-button menu-ham">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </div>
+  <div class="w-section banner inner" data-ix="show-hide-scroll-nav">
+    <div class="triangle"><img src="images/tri-gray.png" alt="54da30716e733d1b30f89e8d_tri-gray.png">
+    </div>
+    <div class="w-container">
+      <div class="div-center">
+        <h1 class="h-inner" data-ix="text-inner"><span class="white-2">Ready to log in?</span></h1>
+        <div class="sub-text" data-ix="text-inner-2">Log in to Converse Alpha!</div>
+      </div>
+    </div>
+  </div>
+  <div class="w-section section">
+    <div class="w-container login">
+      <div class="tittle-heading">
+        <h3>Log in here</h3><img src="images/arrow.png" alt="54d9ff946e733d1b30f898f2_arrow.png">
+      </div>
+      <div class="w-form">
+        <form class="login" id="email-form-2" name="email-form-2" data-name="Email Form 2">
+          <input class="w-input login text-field" id="Email" type="email" placeholder="Email" name="Email" required="required" autofocus="autofocus" data-name="Email">
+          <input class="w-input login text-field" id="Password" type="password" placeholder="Password" name="Password" required="required" data-name="Password">
+          <input class="w-button button s-button" id="Log In" type="button" value="Log In" onclick="logIn()" data-wait="Please wait...">
+        </form>
+        <div class="w-form-done">
+          <p>Thank you! Your submission has been received!</p>
+        </div>
+        <div class="w-form-fail">
+          <p>Oops! Something went wrong while submitting the form :(</p>
+        </div>
+      </div>
+    </div>
+  </div><img src="images/tri-color.png" alt="54da1e68c06675ff4ccfe95a_tri-color.png">
+  <div class="w-section footer">
+    <div class="w-container center">
+      <div class="float-left"><img src="images/converseWhiteTrans.png" width="185" alt="54f92e1073ee3d0b0579604b_converseWhiteTrans.png">
+      </div>
+      <div class="float-left copy">
+        <p class="copy">© 2015 Converse</p>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/webflow.js"></script>
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

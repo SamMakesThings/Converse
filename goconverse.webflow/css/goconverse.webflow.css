@@ -20,6 +20,7 @@ h2 {
   font-weight: 700;
 }
 h3 {
+  display: block;
   margin-top: 20px;
   margin-bottom: 10px;
   color: #313131;
@@ -81,10 +82,13 @@ p {
   background-color: #ff834a;
 }
 .button.s-button {
-  display: block;
-  width: 934px;
-  padding-top: 18px;
-  padding-bottom: 18px;
+  display: inline-block;
+  width: 35%;
+  margin-top: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 18px 0px;
+  text-align: center;
 }
 .button.widebutton {
   padding-right: 35px;
@@ -108,8 +112,8 @@ p {
 }
 .banner.inner {
   height: auto;
-  padding-top: 55px;
-  padding-bottom: 120px;
+  padding-top: 56px;
+  padding-bottom: 75px;
 }
 .nav-link {
   margin-left: 10px;
@@ -159,8 +163,8 @@ p {
 }
 .section {
   position: relative;
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 .section.gray {
   padding-top: 120px;
@@ -203,7 +207,8 @@ p {
   padding-bottom: 0px;
 }
 .tittle-heading {
-  margin-bottom: 60px;
+  display: block;
+  margin-bottom: 30px;
   text-align: center;
 }
 .tittle-heading._2 {
@@ -259,7 +264,9 @@ p {
   background-image: url('../images/rocket_ffffff_100.png');
 }
 .div-spc {
+  display: block;
   margin-top: 20px;
+  text-align: center;
 }
 .div-spc._2x {
   margin-top: 40px;
@@ -622,17 +629,24 @@ p {
   text-align: center;
 }
 .text-field {
-  width: 32.8%;
+  position: static;
+  display: inline-block;
+  overflow-x: visible;
+  overflow-y: visible;
+  width: 35%;
   height: 48px;
-  margin-right: 5px;
+  margin-right: auto;
   margin-bottom: 5px;
+  margin-left: auto;
   padding-top: 0px;
   padding-bottom: 0px;
   float: left;
+  clear: none;
   border-style: none;
   background-color: #f7f7f7;
   -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
+  text-align: left;
 }
 .text-field:focus {
   background-color: #f0f0f0;
@@ -727,6 +741,25 @@ p {
 .stripe {
   background-color: #00c2a2;
   color: #00c2a2;
+}
+.login {
+  display: inline-block;
+  float: none;
+  text-align: center;
+}
+.login {
+  display: block;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+  padding-bottom: 18px;
+  float: none;
+  text-align: center;
+}
+.logitin {
+  display: inline-block;
+  width: 35%;
+  text-align: center;
 }
 html.w-mod-js *[data-ix="portfolio-overlay"] {
   -webkit-transform: translate(0px, -1000px);

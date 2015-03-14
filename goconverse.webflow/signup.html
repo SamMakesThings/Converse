@@ -11,44 +11,46 @@
 		// Function called when form is submitted - Calls createUser() then adds their userID, name, and reasons for joining to Firebase.
 		function createCredentials()
 		{
-		
-		// Calling Firebase's createUser()
-		ref.createUser(
-		{
-		  email: document.getElementById('Email').value,
-		  password: document.getElementById('Password').value
-		}
-		, //This function is passed to createUser() as the second argument
-		function(error, userData) {
-		  if (error) {
-			switch (error.code) {
-			  case "email_TAKEN":
-				console.log("The new user account cannot be created because the email is already in use.");
-				break;
-			  case "INVALID_email":
-				console.log("The specified email is not a valid email.");
-				break;
-			  default:
-				console.log("Error creating user:", error);
-			}
-		  } 
-		  else 
-		  {
-		    // On success, log userID
-			console.log("Successfully created user account with uid:", userData.uid);
-
-			// ...then add user ID and user data to Firebase
-			var usersRef = ref.child("users");
-			usersRef.child(userData.uid).set(
+			// Changing the button value to a waiting message
+			document.getElementById("Submit").setAttribute("value", "Please wait...");
+			
+			// Calling Firebase's createUser()
+			ref.createUser(
 			{
-				name: document.getElementById('Name').value,
-				email: document.getElementById('Email').value,
-				why: document.getElementById('Why').value
+			  email: document.getElementById('Email').value,
+			  password: document.getElementById('Password').value
+			}
+			, //This function is passed to createUser() as the second argument
+			function(error, userData) {
+			  if (error) {
+				switch (error.code) {
+				  case "email_TAKEN":
+					console.log("The new user account cannot be created because the email is already in use.");
+					break;
+				  case "INVALID_email":
+					console.log("The specified email is not a valid email.");
+					break;
+				  default:
+					console.log("Error creating user:", error);
+				}
+			  } 
+			  else 
+			  {
+				// On success, log userID
+				console.log("Successfully created user account with uid:", userData.uid);
+
+				// ...then add user ID and user data to Firebase
+				var usersRef = ref.child("users");
+				usersRef.child(userData.uid).set(
+				{
+					name: document.getElementById('Name').value,
+					email: document.getElementById('Email').value,
+					why: document.getElementById('Why').value
+				});
+				// ...then redirect the user to the success page
+				window.location.href="success.html"; 
+			  }
 			});
-			// ...then redirect the user to the success page
-			window.location.href="success.html"; 
-		  }
-		});
 		}
   </script>
   <!-- Back to Webflow code -->
@@ -130,7 +132,7 @@
             <input class="w-input text-field" id="Password" type="password" placeholder="Enter a password" name="Password" data-name="Password" required="required">
             <textarea class="w-input text-area" id="Why" placeholder="Why do you want to use Converse? (Optional)" name="Why" data-name="Why" required="required"></textarea>
             <div class="div-spc">
-              <input class="w-button button s-button" type="button" onclick="createCredentials()" value="Submit Application" data-wait="Please wait...">
+              <input class="w-button button s-button" id="Submit" type="button" onclick="createCredentials()" value="Submit Application" data-wait="Please wait...">
             </div>
           </form>
           <div class="w-form-done success">
