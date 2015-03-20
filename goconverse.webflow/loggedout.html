@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <!-- This site was created in Webflow. http://www.webflow.com-->
-<!-- Last Published: Sat Mar 14 2015 17:16:32 GMT+0000 (UTC) -->
-<html data-wf-site="54f9268573ee3d0b05795f70" data-wf-page="55046994d03ca21426de63ab">
+<!-- Last Published: Fri Mar 20 2015 01:22:33 GMT+0000 (UTC) -->
+<html data-wf-site="54f9268573ee3d0b05795f70" data-wf-page="550b76356ff2e2f45732ea9a">
 <head>
-  <script src="https://cdn.firebase.com/js/client/2.2.3/firebase.js"></script>
   <meta charset="utf-8">
-  <title>Placeholder - Converse</title>
-  <meta name="description" content="You've been logged in!">
-  <meta name="keywords" content="logged, in">
+  <title>Logged Out - Converse</title>
+  <meta name="description" content="You've been logged out.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="generator" content="Webflow">
   <link rel="stylesheet" type="text/css" href="css/normalize.css">
@@ -32,9 +30,6 @@
         background-color: #e5e5e5; !important
     }
   </style>
-  <!--  Begin non-webflow code -->
-
-  <!-- End non-webflow code -->
 </head>
 <body>
   <a class="w-inline-block go-top" href="#top" data-ix="hide"></a>
@@ -52,38 +47,8 @@
   <div class="w-section banner inner" data-ix="show-hide-scroll-nav">
     <div class="w-container">
       <div class="div-center">
-        <h1 class="h-inner" data-ix=" text-inner"><span class="white-2">Success!</span></h1>
-		  <div class="sub-text" id="userMessage" data-ix="text-inner-2">
-		  You have been logged in as 
-			<script>
-			// Create a reference to Converse's Firebase url
-			var ref = new Firebase("https://goconverse.firebaseio.com");
-
-		  // Create a callback which logs the current auth state
-			function authDataCallback(authData) 
-			{
-			var usersRef = new Firebase("https://goconverse.firebaseio.com/users");
-			  if (authData) 
-			  {
-				console.log("User " + authData.uid + " is logged in with " + authData.provider);
-				usersRef.child(authData.uid).child("name").on("value", function(usersName)
-					{
-						document.getElementById("userMessage").innerHTML = "You have been logged in as " + usersName.val() + ". Thanks for visiting! We'll be operational soon.";
-					}
-					);
-				// document.write(userName);
-			  }
-			  else 
-			  {
-				console.log("User is logged out");
-				window.location = "loggedout.html";
-			  }
-			};
-
-			// Register the callback to be fired every time auth state changes
-			ref.onAuth(authDataCallback);
-		  </script>. Don’t worry, we’ll be operational soon.
-		</div>
+        <h1 class="h-inner" data-ix="text-inner"><span class="white-2">Success!</span></h1>
+        <div class="sub-text" data-ix="text-inner-2">You have been logged out. Thanks for using Converse!</div>
       </div>
     </div>
   </div>
