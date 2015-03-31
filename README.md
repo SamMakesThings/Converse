@@ -6,15 +6,15 @@ Converse is a project that originated from the November Kansas City Startup Week
 Current features:
 - Users can register their email and password
 - Associated additional information with user accounts (name, age, country, etc.)
-- Users can log in (Yay!)
+- Users can log in and log out
+- Successfully hosted on Azure
 
 Currently working on:
-- Getting Azure hosting up and running
+- Messaging other users (Core functionality of Converse)
 
 Planned features (in chronological order):
 - A more complete sign-up process
 - Main page, where users can view recent messages
-- Messaging other users
 - Account email verification
 - Profile page, to view information about each user
 - "Status updates" where users can see updates from people they've talked to
