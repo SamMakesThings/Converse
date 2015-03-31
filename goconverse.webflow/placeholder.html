@@ -42,7 +42,7 @@
     <div class="w-container">
       <a class="w-nav-brand barnd" href="index.html"><img src="images/converseWhiteTrans.png" width="185" alt="54f92e1073ee3d0b0579604b_converseWhiteTrans.png">
       </a>
-      <nav class="w-nav-menu nav-menu" role="navigation"><a class="w-nav-link nav-link" href="index.html">Home</a><a class="w-nav-link nav-link" href="signup.html">Sign Up</a>
+      <nav class="w-nav-menu nav-menu" role="navigation"><a class="w-nav-link nav-link" href="index.html">Home</a><a class="w-nav-link nav-link" href="login.html">Log In</a><a class="w-nav-link nav-link" href="signup.html">Sign Up</a>
       </nav>
       <div class="w-nav-button menu-ham">
         <div class="w-icon-nav-menu"></div>
@@ -82,8 +82,17 @@
 
 			// Register the callback to be fired every time auth state changes
 			ref.onAuth(authDataCallback);
+			
+			// Function to log the user out
+			
 		  </script>. Don’t worry, we’ll be operational soon.
 		</div>
+	<div class="div-spc _2x center">
+        <div class="div-spc _2x _4x">
+          <div class="div-btt"><a class="button widebutton" onclick="ref.unauth()">Log out</a>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </div>
