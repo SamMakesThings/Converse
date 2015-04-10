@@ -11,6 +11,7 @@ Current features:
 
 Currently working on:
 - Messaging other users (Core functionality of Converse)
+- Login and sign-up page error handling
 
 Planned features (in chronological order):
 - A more complete sign-up process
