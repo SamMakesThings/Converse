@@ -26,14 +26,14 @@
 				switch (error.code) {
 				  case "EMAIL_TAKEN":
 					console.log("The new user account cannot be created because the email is already in use.");
-					document.getElementById('Submit').setAttribute("value", "Submit Application");
+					document.getElementById('Submit').setAttribute("value", "Error signing up");
 					var emailField = document.getElementById('Email');
 					emailField.style.backgroundColor = "#FFA8A8";
 					emailField.value="Email address already taken";
 					break;
 				  case "INVALID_EMAIL":
 					console.log("The specified email is not a valid email.");
-					document.getElementById('Submit').setAttribute("value", "Submit Application");
+					document.getElementById('Submit').setAttribute("value", "Error signing up");
 					var emailField = document.getElementById('Email');
 					emailField.style.backgroundColor = "#FFA8A8";
 					emailField.value="Invalid email address";
