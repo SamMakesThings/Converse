@@ -10,7 +10,7 @@ Current features:
 - Successfully hosted on Azure
 
 Currently working on:
-- Messaging other users (Core functionality of Converse)
+- Messaging page HTML (trying to make it responsive)
 
 Planned features (in chronological order):
 - A more complete sign-up process
