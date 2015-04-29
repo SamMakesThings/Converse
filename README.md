@@ -11,8 +11,9 @@ Current features:
 
 Currently working on:
 - Messaging page HTML (trying to make it responsive)
+- Messaging page function
 
-Planned features (in chronological order):
+Planned features (in rough chronological order):
 - A more complete sign-up process
 - Main page, where users can view recent messages
 - Account email verification
