@@ -10,7 +10,6 @@ Current features:
 - Successfully hosted on Azure
 
 Currently working on:
-- Messaging page HTML (trying to make it responsive)
 - Messaging page function
 
 Planned features (in rough chronological order):
