@@ -29,8 +29,8 @@ define('navbar'   , require('./webflow-navbar'));
 define('dropdown' , require('./webflow-dropdown'));
 define('tabs'     , require('./webflow-tabs'));
 define('brand'    , require('./webflow-brand'));
-// define('edit'     , require('./webflow-edit'));
-// define('content'  , require('./webflow-content'));
+
+
 
 },{"./webflow-brand":2,"./webflow-dropdown":3,"./webflow-forms":4,"./webflow-gplus":5,"./webflow-ix":6,"./webflow-lib":7,"./webflow-lightbox":8,"./webflow-links":9,"./webflow-maps":10,"./webflow-navbar":11,"./webflow-scroll":12,"./webflow-slider":13,"./webflow-tabs":14,"./webflow-touch":15}],2:[function(require,module,exports){
 'use strict';
@@ -52,12 +52,12 @@ module.exports = function($, _) {
   // Module methods
 
   api.ready = function() {
-    var doBranding = $html.attr("data-wf-status") && location.href.match(/webflow.com|webflowtest.com/);
+    var doBranding = $html.attr("data-wf-status");
 
     if (doBranding) {
       var $branding = $('<div></div>');
       var $link = $('<a></a>');
-      $link.attr('href', 'http://webflow.com');
+      $link.attr('href', 'http://webflow.com?utm_campaign=brandjs');
 
       $branding.css({
         position: 'fixed',
@@ -571,7 +571,7 @@ module.exports = function($, _) {
   }
 
   var disconnected = _.debounce(function() {
-    alert('Oops! This page has a form that is powered by Webflow, but important code was removed that is required to make the form work. Please contact support@webflow.com to fix this issue.');
+    alert('Oops! This page has improperly configured forms. Please contact your website administrator to fix this issue.');
   }, 100);
 
   // Export module
@@ -626,7 +626,6 @@ module.exports = function($, _) {
   var namespace = '.w-ix';
   var tram = $.tram;
   var env = Webflow.env;
-  var ios = env.ios;
   var inApp = env();
   var emptyFix = env.chrome && env.chrome < 35;
   var transNone = 'none 0s ease 0s';
@@ -694,7 +693,7 @@ module.exports = function($, _) {
   function configure(list) {
     if (!list) return;
 
-    // Map all interactions to a hash using slug as key.
+    // Map all interactions by slug
     config = {};
     _.each(list, function(item) {
       config[item.slug] = item.value;
@@ -733,9 +732,8 @@ module.exports = function($, _) {
     var triggers = ix.triggers;
     if (!triggers) return;
 
-    // Set initial styles, unless we detect an iOS device + any non-iOS triggers
-    var setStyles = !(ios && _.any(triggers, isNonIOS));
-    if (setStyles) api.style($el, ix.style);
+    // Set styles immediately to provide tram with starting transform values
+    api.style($el, ix.style);
 
     _.each(triggers, function(trigger) {
       var state = {};
@@ -772,18 +770,6 @@ module.exports = function($, _) {
         return;
       }
 
-      // Check for a component proxy selector
-      var proxy = components[type];
-      if (proxy) {
-        var $proxy = $el.closest(proxy);
-        $proxy.on(introEvent, runA).on(outroEvent, runB);
-        $subs = $subs.add($proxy);
-        return;
-      }
-
-      // Ignore the following triggers on iOS devices
-      if (ios) return;
-
       if (type == 'scroll') {
         anchors.push({
           el: $el, trigger: trigger, state: { active: false },
@@ -792,11 +778,17 @@ module.exports = function($, _) {
         });
         return;
       }
-    });
-  }
 
-  function isNonIOS(trigger) {
-    return trigger.type == 'scroll';
+      // Check for a proxy component selector
+      // type == [tabs, dropdown, slider, navbar]
+      var proxy = components[type];
+      if (proxy) {
+        var $proxy = $el.closest(proxy);
+        $proxy.on(introEvent, runA).on(outroEvent, runB);
+        $subs = $subs.add($proxy);
+        return;
+      }
+    });
   }
 
   function convert(offset) {
@@ -1005,10 +997,10 @@ module.exports = function($, _) {
     el.css('transition', '');
     var computed = el.css('transition');
 
-    // If computed is disabled, clear upstream
+    // If computed is set to none, clear upstream
     if (computed === transNone) computed = _tram.upstream = null;
 
-    // Disable upstream temporarily
+    // Set upstream transition to none temporarily
     _tram.upstream = transNone;
 
     // Set values immediately
@@ -2743,7 +2735,7 @@ module.exports = function($, _) {
     }
 
     // If a fixed header exists, offset for the height
-    var header = $('header, body > .header, body > .w-nav');
+    var header = $('header, body > .header, body > .w-nav:not([data-no-scroll])');
     var offset = header.css('position') === 'fixed' ? header.outerHeight() : 0;
 
     win.setTimeout(function() {

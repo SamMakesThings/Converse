@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- This site was created in Webflow. http://www.webflow.com-->
-<!-- Last Published: Wed Apr 29 2015 02:01:57 GMT+0000 (UTC) -->
+<!-- Last Published: Mon Jun 01 2015 03:52:56 GMT+0000 (UTC) -->
 <html data-wf-site="54f9268573ee3d0b05795f70" data-wf-page="553087f2468f96a1375fb7fd">
 <head>
   <meta charset="utf-8">
@@ -20,11 +20,6 @@
     });
   </script>
   <script type="text/javascript" src="js/modernizr.js"></script>
-  <!-- Begin non-Webflow code -->
-  <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
-  <script>
-	var ref = new Firebase("https://goconverse.firebaseio.com");
-  </script>
   <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
   <link rel="apple-touch-icon" href="images/webclip.png">
   <style>
@@ -40,7 +35,7 @@
   <a class="w-inline-block go-top" href="#top" data-ix="hide"></a>
   <div class="w-nav navigation" id="top" data-collapse="medium" data-animation="default" data-duration="400" data-contain="1">
     <div class="w-container">
-      <a class="w-nav-brand barnd" href="index.html"><img src="images/converseWhiteTrans.png" width="185" alt="54f92e1073ee3d0b0579604b_converseWhiteTrans.png">
+      <a class="w-nav-brand barnd" href="index.html"><img src="images/converseWhiteTrans.png" width="185">
       </a>
       <nav class="w-nav-menu nav-menu" role="navigation"><a class="w-nav-link nav-link" href="index.html">Home</a><a class="w-nav-link nav-link" href="login.html">Log In</a><a class="w-nav-link nav-link" href="signup.html">Sign Up</a>
       </nav>
@@ -49,29 +44,52 @@
       </div>
     </div>
   </div>
-  <div class="w-section banner inner message-page" data-ix="show-hide-scroll-nav">
-    <div class="w-container">
-      <div class="div-center">
-        <h1 class="h-inner" data-ix="text-inner"><span style="font-weight: normal; text-transform: capitalize;">Conversing&nbsp;with: Jaspreet</span></h1>
-        <div class="sub-text" data-ix="text-inner-2">Jaspreet is from India. Say hello!</div>
+  <div class="w-section messaging">
+    <div class="w-row messaging-row">
+      <div class="w-col w-col-3 person"><img class="user-self" src="images/Person One.jpg" width="196">
+        <h3>Sam stowers</h3>
+        <p>From the United States of America
+          <br>Enjoys singing, ukulele, and programming
+          <br>Studies at the University of Missouri</p>
       </div>
-    </div>
-  </div>
-  <div class="w-section messaging"><img src="images/triangle.png" alt="55046c36f2ad24312b0d21f1_triangle.png">
-    <div class="messaging-div">
-      <div class="message left">Hi Jaspreet!</div>
-      <div class="message right">Hi Sam? Where are you from?</div>
+      <div class="w-col w-col-6">
+        <div class="messaging-div shadowless"><img class="messaging-title" src="images/converseBlackTrans.png" width="177">
+          <div class="messaging-div body-div">
+            <div class="message left">Hi Enton! What does a longer paragraph look like? I'm simply going to keep typing until I see my plan clearly.</div>
+            <div class="message right">Hi Sam? Where are you from?</div>
+          </div>
+          <div class="sending">
+            <div class="w-form">
+              <form class="form" id="email-form" name="email-form" data-name="Email Form">
+                <textarea class="w-input body-div messaging-div new-thing" id="field" placeholder="Type your message here" name="field" autofocus="autofocus"></textarea><a class="button btn-dark messaging-button" href="#about">Send Message</a>
+              </form>
+              <div class="w-form-done">
+                <p>Thank you! Your submission has been received!</p>
+              </div>
+              <div class="w-form-fail">
+                <p>Oops! Something went wrong while submitting the form</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="w-col w-col-3 person"><img class="user-self" src="images/Person Two.jpg" width="196">
+        <h3>Enton Lok</h3>
+        <p>From The People’s Republic of China
+          <br>Is a graphic designer
+          <br>Lives in&nbsp;Macau, China</p>
+      </div>
     </div>
   </div>
   <div class="w-section footer">
     <div class="w-container center">
-      <div class="float-left"><img src="images/converseWhiteTrans.png" width="185" alt="54f92e1073ee3d0b0579604b_converseWhiteTrans.png">
+      <div class="float-left"><img src="images/converseWhiteTrans.png" width="185">
       </div>
       <div class="float-left copy">
         <p class="copy">© 2015 Converse</p>
       </div>
     </div>
-  </div><img src="images/triangle.png" alt="55046c36f2ad24312b0d21f1_triangle.png">
+  </div><img src="images/triangle.png">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/webflow.js"></script>
   <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
