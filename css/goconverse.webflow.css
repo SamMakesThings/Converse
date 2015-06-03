@@ -821,7 +821,7 @@ p {
   background-color: #00c2a2;
   background-image: -webkit-linear-gradient(#00c2a2 18%, #00a88c 97%);
   background-image: linear-gradient(#00c2a2 18%, #00a88c 97%);
-  box-shadow: rgba(0, 0, 0, 0.24) 1px 1px 3px 0px;
+  box-shadow: rgba(0, 0, 0, 0.23) 1px 1px 3px 0px;
 }
 .message.right {
   margin: 4px 3% 4px 45%;
@@ -831,7 +831,7 @@ p {
   background-color: #fec700;
   background-image: -webkit-linear-gradient(#fec700, #edba00);
   background-image: linear-gradient(#fec700, #edba00);
-  box-shadow: rgba(0, 0, 0, 0.24) 1px 1px 3px 0px;
+  box-shadow: rgba(0, 0, 0, 0.23) 1px 1px 3px 0px;
   color: black;
   text-align: right;
 }
@@ -858,7 +858,7 @@ p {
   border-style: solid;
   border-color: white;
   background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.24) 1px 1px 5px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.23) 1px 1px 5px 0px inset;
 }
 .messaging-div.shadowless {
   position: relative;
@@ -894,7 +894,22 @@ p {
 .person {
   display: block;
   padding-top: 15px;
-  box-shadow: rgba(0, 0, 0, 0.23) 1px 1px 5px 0px;
+  box-shadow: rgba(0, 0, 0, 0.22) 1px 1px 5px 0px;
+}
+.loading-icon {
+  display: block;
+  margin-right: auto;
+  margin-bottom: 15px;
+  margin-left: auto;
+  -webkit-transition: -webkit-transform 2000ms ease;
+  transition: transform 2000ms ease;
+}
+.loading-icon:hover {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
 }
 html.w-mod-js *[data-ix="portfolio-overlay"] {
   -webkit-transform: translate(0px, -1000px);
