@@ -54,10 +54,15 @@ h6 {
   font-weight: 700;
 }
 p {
+  position: static;
   display: block;
+  overflow-x: visible;
+  overflow-y: visible;
   margin-right: auto;
   margin-bottom: 5px;
   margin-left: auto;
+  float: none;
+  clear: none;
   color: #a1a1a1;
   font-size: 14px;
   line-height: 26px;
@@ -655,10 +660,9 @@ p {
 }
 .text-field {
   position: static;
-  display: inline-block;
+  display: block;
   overflow-x: visible;
   overflow-y: visible;
-  width: 35%;
   height: 48px;
   margin-right: auto;
   margin-bottom: 5px;
@@ -677,8 +681,11 @@ p {
   background-color: #f0f0f0;
 }
 .text-area {
+  display: block;
   width: 934px;
+  margin-right: auto;
   margin-bottom: 0px;
+  margin-left: auto;
   padding-bottom: 110px;
   border-style: none;
   background-color: #f7f7f7;
@@ -821,7 +828,7 @@ p {
   background-color: #00c2a2;
   background-image: -webkit-linear-gradient(#00c2a2 18%, #00a88c 97%);
   background-image: linear-gradient(#00c2a2 18%, #00a88c 97%);
-  box-shadow: rgba(0, 0, 0, 0.23) 1px 1px 3px 0px;
+  box-shadow: rgba(0, 0, 0, 0.22) 1px 1px 3px 0px;
 }
 .message.right {
   margin: 4px 3% 4px 45%;
@@ -831,7 +838,7 @@ p {
   background-color: #fec700;
   background-image: -webkit-linear-gradient(#fec700, #edba00);
   background-image: linear-gradient(#fec700, #edba00);
-  box-shadow: rgba(0, 0, 0, 0.23) 1px 1px 3px 0px;
+  box-shadow: rgba(0, 0, 0, 0.22) 1px 1px 3px 0px;
   color: black;
   text-align: right;
 }
@@ -858,7 +865,7 @@ p {
   border-style: solid;
   border-color: white;
   background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.23) 1px 1px 5px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.24) 1px 1px 5px 0px inset;
 }
 .messaging-div.shadowless {
   position: relative;
@@ -894,7 +901,7 @@ p {
 .person {
   display: block;
   padding-top: 15px;
-  box-shadow: rgba(0, 0, 0, 0.22) 1px 1px 5px 0px;
+  box-shadow: rgba(0, 0, 0, 0.24) 1px 1px 5px 0px;
 }
 .loading-icon {
   display: block;
@@ -910,6 +917,34 @@ p {
   transform: rotate(180deg);
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
+}
+.user-info {
+  text-align: center;
+}
+.timestamp {
+  display: block;
+  margin-top: -5px;
+  padding-right: 10px;
+  color: rgba(46, 46, 46, 0.67);
+  font-size: 12px;
+  text-align: right;
+}
+.timestamp.user-one {
+  padding-right: 0px;
+  padding-left: 20px;
+  color: rgba(46, 46, 46, 0.67);
+  text-align: left;
+}
+.country {
+  margin-bottom: 5px;
+  background-color: #f7f7f7;
+}
+.country-select {
+  display: block;
+  margin-bottom: 5px;
+  padding-left: 12px;
+  border: 1px solid transparent;
+  background-color: #f7f7f7;
 }
 html.w-mod-js *[data-ix="portfolio-overlay"] {
   -webkit-transform: translate(0px, -1000px);

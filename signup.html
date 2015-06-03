@@ -1,67 +1,8 @@
 <!DOCTYPE html>
 <!-- This site was created in Webflow. http://www.webflow.com-->
-<!-- Last Published: Mon Mar 09 2015 22:48:47 GMT+0000 (UTC) -->
+<!-- Last Published: Wed Jun 03 2015 20:38:09 GMT+0000 (UTC) -->
 <html data-wf-site="54f9268573ee3d0b05795f70" data-wf-page="54f9268573ee3d0b05795f78">
 <head>
-  <!-- Adding Firebase code, differing from Webflow -->
-  <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
-  <script>
-	  var ref = new Firebase("https://goconverse.firebaseio.com/");
-		
-		// Function called when form is submitted - Calls createUser() then adds their userID, name, and reasons for joining to Firebase.
-		function createCredentials()
-		{
-			// Changing the button value to a waiting message
-			document.getElementById("Submit").setAttribute("value", "Please wait...");
-			
-			// Calling Firebase's createUser()
-			ref.createUser(
-			{
-			  email: document.getElementById('Email').value,
-			  password: document.getElementById('Password').value
-			}
-			, //This function is passed to createUser() as the second argument
-			function(error, userData) {
-			  if (error) {
-				switch (error.code) {
-				  case "EMAIL_TAKEN":
-					console.log("The new user account cannot be created because the email is already in use.");
-					document.getElementById('Submit').setAttribute("value", "Error signing up");
-					var emailField = document.getElementById('Email');
-					emailField.style.backgroundColor = "#FFA8A8";
-					emailField.value="Email address already taken";
-					break;
-				  case "INVALID_EMAIL":
-					console.log("The specified email is not a valid email.");
-					document.getElementById('Submit').setAttribute("value", "Error signing up");
-					var emailField = document.getElementById('Email');
-					emailField.style.backgroundColor = "#FFA8A8";
-					emailField.value="Invalid email address";
-					break;
-				  default:
-					console.log("Error creating user:", error);
-				}
-			  } 
-			  else 
-			  {
-				// On success, log userID
-				console.log("Successfully created user account with uid:", userData.uid);
-
-				// ...then add user ID and user data to Firebase
-				var usersRef = ref.child("users");
-				usersRef.child(userData.uid).set(
-				{
-					name: document.getElementById('Name').value,
-					email: document.getElementById('Email').value,
-					why: document.getElementById('Why').value
-				});
-				// ...then redirect the user to the success page
-				window.location.href="success.html"; 
-			  }
-			});
-		}
-  </script>
-  <!-- Back to Webflow code -->
   <meta charset="utf-8">
   <title>Sign Up - Converse</title>
   <meta name="description" content="Sign up here to join Converse Alpha.">
@@ -90,12 +31,75 @@
         background-color: #e5e5e5; !important
     }
   </style>
+    <!-- Adding Firebase code, differing from Webflow -->
+  <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+  <script>
+	  var ref = new Firebase("https://goconverse.firebaseio.com/");
+		
+		// Function called when form is submitted - Calls createUser() then adds their userID, name, and reasons for joining to Firebase.
+		function createCredentials()
+		{
+			// Changing the button value to a waiting message
+			document.getElementById("Submit").setAttribute("value", "Please wait...");
+			
+			// Calling Firebase's createUser()
+			ref.createUser(
+			{
+			  email: document.getElementById('email').value,
+			  password: document.getElementById('password').value
+			}
+			, // This function is passed to createUser() as the second argument
+			function(error, userData) {
+			  if (error) {
+				switch (error.code) {
+				  case "EMAIL_TAKEN":
+					console.log("The new user account cannot be created because the email is already in use.");
+					document.getElementById('Submit').setAttribute("value", "Error signing up");
+					var emailField = document.getElementById('email');
+					emailField.style.backgroundColor = "#FFA8A8";
+					emailField.value="Email address already taken";
+					break;
+				  case "INVALID_EMAIL":
+					console.log("The specified email is not a valid email.");
+					document.getElementById('Submit').setAttribute("value", "Error signing up");
+					var emailField = document.getElementById('email');
+					emailField.style.backgroundColor = "#FFA8A8";
+					emailField.value="Invalid email address";
+					break;
+				  default:
+					console.log("Error creating user:", error);
+				}
+			  } 
+			  else 
+			  {
+				// On success, log userID
+				console.log("Successfully created user account with uid:", userData.uid);
+
+				// ...then add user ID and user data to Firebase
+				var usersRef = ref.child("users");
+				usersRef.child(userData.uid).set(
+				{
+					firstname: document.getElementById('first-name').value,
+					lastname: document.getElementById('last-name').value,
+					email: document.getElementById('email').value,
+					country: document.getElementById('country').value,
+					city: document.getElementById('city').value,
+					birthday: document.getElementById('birthday').value,
+					interests: document.getElementById('interests').value
+				});
+				// ...then redirect the user to the success page
+				window.location.href="success.html"; 
+			  }
+			});
+		}
+  </script>
+  <!-- Back to Webflow code -->
 </head>
 <body>
   <a class="w-inline-block go-top" href="#top" data-ix="hide"></a>
   <div class="w-nav navigation" id="top" data-collapse="medium" data-animation="default" data-duration="400" data-contain="1">
     <div class="w-container">
-      <a class="w-nav-brand barnd" href="index.html"><img src="images/converseWhiteTrans.png" width="185" alt="54f92e1073ee3d0b0579604b_converseWhiteTrans.png">
+      <a class="w-nav-brand barnd" href="index.html"><img src="images/converseWhiteTrans.png" width="185">
       </a>
       <nav class="w-nav-menu nav-menu" role="navigation"><a class="w-nav-link nav-link" href="index.html">Home</a><a class="w-nav-link nav-link" href="login.html">Log In</a><a class="w-nav-link nav-link" href="signup.html">Sign Up</a>
       </nav>
@@ -105,7 +109,7 @@
     </div>
   </div>
   <div class="w-section banner inner" data-ix="show-hide-scroll-nav">
-    <div class="triangle"><img src="images/tri-gray.png" alt="54da30716e733d1b30f89e8d_tri-gray.png">
+    <div class="triangle"><img src="images/tri-gray.png">
     </div>
     <div class="w-container">
       <div class="div-center">
@@ -118,75 +122,34 @@
     <div class="w-container">
       <div class="tittle-heading">
         <h3>sign up here</h3>
-        <div class="div-line"><img src="images/arrow.png" alt="54d9ff946e733d1b30f898f2_arrow.png">
+        <div class="div-line"><img src="images/arrow.png">
         </div>
       </div>
       <div class="div-form">
         <div class="w-form">
-          <form class="w-clearfix" id="email-form" name="email-form" data-name="Email Form">
-            <input class="w-input text-field" id="Name" type="text" placeholder="Enter your name" name="name" data-name="Name" required="required">
-            <input class="w-input text-field" id="Email" type="email" placeholder="Enter your email" name="Email" data-name="Email" required="required">
-            <input class="w-input text-field" id="Password" type="password" placeholder="Enter a password" name="Password" data-name="Password" required="required">
-            <textarea class="w-input text-area" id="Why" placeholder="Why do you want to use Converse? (Optional)" name="Why" data-name="Why" required="required"></textarea>
+          <form class="w-clearfix" id="email-form" name="email-form" data-name="email Form">
+            <input class="w-input text-field" id="first-name" type="text" placeholder="First name" name="First-name" data-name="First name" required="required" autofocus="autofocus">
+            <input class="w-input text-field" id="last-name" type="text" placeholder="Last name" name="Last-name" data-name="Last name" required="required">
+            <input class="w-input text-field" id="email" type="email" placeholder="email" name="Email" data-name="Email" required="required">
+            <input class="w-input text-field" id="password" type="password" placeholder="Password" name="Password" data-name="Password" required="required">
+            <select class="w-select country-select" id="country" name="Country" required="required" data-name="Country">
+              <option value="">Select one...</option>
+              <option value="the USA">USA</option>
+              <option value="China">China</option>
+              <option value="India">India</option>
+              <option value="Germany">Germany</option>
+              <option value="France">France</option>
+              <option value="Canada">Canada</option>
+              <option value="Ukraine">Ukraine</option>
+            </select>
+            <input class="w-input text-field" id="city" type="text" placeholder="City" name="City" data-name="City" required="required">
+            <input class="w-input text-field" id="birthday" type="text" placeholder="Birthday" name="Birthday" data-name="Birthday">
+            <textarea class="w-input text-area" id="interests" placeholder="Describe yourself and some of your interests." name="User-Info" data-name="User Info" required="required"></textarea>
             <div class="div-spc">
-              <input class="w-button button s-button" id="Submit" type="button" onclick="createCredentials()" value="Submit Application" data-wait="Please wait...">
+              <input class="w-button button s-button" id="Submit" type="button" onclick="createCredentials()" value="Submit Sign-up" data-wait="Please wait...">
             </div>
           </form>
-          <div class="w-form-done success">
-            <p class="form-white">Thank you! Your submission has been received!</p>
-          </div>
-          <div class="w-form-fail error">
-            <p class="form-white">Oops! Something went wrong while submitting the form :(</p>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="w-section section gray">
-    <div class="w-container">
-      <div class="w-row row">
-        <div class="w-col w-col-4 col-line" data-ix="move-line-contact">
-          <div class="div-top-line"></div>
-          <div class="div-spc">
-            <h3 class="pricing-text cl">ADDRESS</h3>
-          </div>
-          <div class="div-spc">
-            <p>Somewhere in
-              <br>Kansas City, Missouri</p>
-          </div>
-        </div>
-        <div class="w-col w-col-4 col-line" data-ix="move-line-contact">
-          <div class="div-top-line"></div>
-          <div class="div-spc">
-            <h3 class="pricing-text cl">PHONE</h3>
-          </div>
-          <div class="div-spc">
-            <p>+816 797 4277</p>
-          </div>
-        </div>
-        <div class="w-col w-col-4 col-line" data-ix="move-line-contact">
-          <div class="div-top-line"></div>
-          <div class="div-spc">
-            <h3 class="pricing-text cl">EMAIL</h3>
-          </div>
-          <div class="div-spc">
-            <p>startupsamuel@gmail.com</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="triangle"><img src="images/tri.png" alt="54d9e291781f27014df6842a_tri.png">
-    </div>
-  </div>
-  <div class="map">
-    <div class="w-widget w-widget-map" data-widget-latlng="39.099727,-94.578567" data-widget-style="roadmap" data-widget-zoom="12" data-disable-scroll="1" data-widget-tooltip="Based out of:"></div>
-  </div>
-  <div class="w-section footer">
-    <div class="w-container center">
-      <div class="float-left"><img src="images/converseWhiteTrans.png" width="185" alt="54f92e1073ee3d0b0579604b_converseWhiteTrans.png">
-      </div>
-      <div class="float-left copy">
-        <p class="copy">© 2015 Converse</p>
       </div>
     </div>
   </div>
