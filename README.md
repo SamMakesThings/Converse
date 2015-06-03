@@ -13,9 +13,8 @@ Current features:
 Currently working on:
 - Messaging page function
 - User matching function
-- A more complete sign-up
 - Home page for logged-in users
-- Cleaning up source files
+- Tidier source files
 
 Planned features (in rough chronological order):
 - Account email verification
