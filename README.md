@@ -7,14 +7,17 @@ Current features:
 - Users can register their email and password
 - Associated additional information with user accounts (name, age, country, etc.)
 - Users can log in and log out
+- Users will soon be able to start new conversations (backend is ready)
 - Successfully hosted on Azure
 
 Currently working on:
 - Messaging page function
+- User matching function
+- A more complete sign-up
+- Home page for logged-in users
+- Cleaning up source files
 
 Planned features (in rough chronological order):
-- A more complete sign-up process
-- Main page, where users can view recent messages
 - Account email verification
 - Profile page, to view information about each user
 - "Status updates" where users can see updates from people they've talked to
