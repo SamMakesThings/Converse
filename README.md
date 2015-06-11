@@ -14,6 +14,7 @@ Currently working on:
 - Messaging page function
 - User matching function
 - Home page for logged-in users
+- Improve user flow through home page
 - Tidier source files
 
 Planned features (in rough chronological order):
