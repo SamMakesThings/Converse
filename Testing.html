@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Wed Jun 03 2015 03:21:30 GMT+0000 (UTC) -->
+<html data-wf-site="54f9268573ee3d0b05795f70" data-wf-page="556e6d321e21f90a486f6628">
+<head>
+	<script src="https://cdn.firebase.com/js/client/2.2.6/firebase.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+/*
+	var ref = new Firebase("https://goconverse.firebaseio.com/users");
+	ref.once("value", function(snapshot)
+	{
+		var simpleIdTicker = 51;
+		while (simpleIdTicker < 64)
+		{
+			if (new Firebase("https://goconverse.firebaseio.com/users/simplelogin:" + simpleIdTicker).val != "the USA")
+			{
+				console.log("simplelogin:" + simpleIdTicker);
+				simpleIdTicker++;
+			}
+			else
+			{
+				simpleIdTicker++;
+			};
+			
+			console.log(new Firebase("https://goconverse.firebaseio.com/users/simplelogin:" + simpleIdTicker));
+		}
+	}, 
+	function (errorObject)
+	{
+		console.log("The read failed: " + errorObject.code);
+	});
+	
+	
+	*/
+	
+
+</script>
+<script type="text/javascript">
+
+	var ref = new Firebase("https://goconverse.firebaseio.com/users");
+	
+	var usersList;
+	
+	ref.once("value", function(snapshot)
+	{
+		var simpleIdTicker = 61;
+		console.log(snapshot.val());
+		// console.log(snapshot.child("simplelogin:" + simpleIdTicker).child("country").val());
+		
+		while (simpleIdTicker < 80)
+		{
+			if (snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() != "USA" && snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() != null)
+			{
+				console.log(snapshot.child("simplelogin:" + simpleIdTicker).val());
+				simpleIdTicker++;
+			}
+			else
+			{
+				simpleIdTicker++;
+			}
+		}
+		
+
+	}, 
+	function (errorObject)
+	{
+		console.log("The read failed: " + errorObject.code);
+	});
+	
+	
+
+</script>
+</body>

@@ -67,38 +67,20 @@
 			
 			
 			// Actual user matching 
-/*			new Firebase("https://goconverse.firebaseio.com/users/")
-				.startAt('58')
-				.endAt('60')
-				.once('value', function(snap) {
-					console.log('lol  is a listicle', snap.val())
-			   });
-		
-			// Get a database reference to our posts
-			var userAA = 'simplelogin:51'
 
-			// Attach an asynchronous callback to read the data at our posts reference
-			var usersZ = "https://goconverse.firebaseio.com/users"
-			usersZ.on(userAA, function(snapshot) {
-			  console.log(snapshot.val());
-			}, function (errorObject) {
-			  console.log("The read failed: " + errorObject.code);
-			});
-					
 			
-			
-			// console.log(testing);
-			*/
 			// Creating a new conversation
 			var conversations = new Firebase("https://goconverse.firebaseio.com/conversations/");
 			
-			// Create conversation in 'conversations' section of Firebase
-			var conversationRef = conversations.push({
-				"participants": {
+			var conversationRef = conversations.push(
+			{
+				"participants": 
+				{
 					userOne: userId,
 					userTwo: userFound
 				},
-				"messages": {
+				"messages": 
+				{
 					init: ""
 				}
 			});
