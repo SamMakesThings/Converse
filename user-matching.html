@@ -61,13 +61,40 @@
 			// User matching algorithm
 			var userOneRef = new Firebase(("https://goconverse.firebaseio.com/users/").concat(userId));
 			
-				// blah blah algorithm here
-			var userFound = "simplelogin:52";
-			var userTwoRef = new Firebase(("https://goconverse.firebaseio.com/users/").concat(userFound));
-			
-			
-			// Actual user matching 
+			// Filters out same-country users and sorts by number of conversations
 
+			var usersRef = new Firebase("https://goconverse.firebaseio.com/users");
+			
+			var usersList = [];
+
+			usersRef.once("value", function(snapshot)
+			{
+				var simpleIdTicker = 61;
+				
+				while (simpleIdTicker < 100)
+				{
+					if (snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() == "USA" && snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() != null)
+					{
+						// console.log(snapshot.child("simplelogin:" + simpleIdTicker).val());
+						usersList.push(snapshot.child("simplelogin:" + simpleIdTicker).val());
+						simpleIdTicker++;
+					}
+					else
+					{
+						simpleIdTicker++;
+					}
+				}
+				
+				var sortedUserList = usersList.sort(function(a, b)
+				{
+				return a.conversationsCount - b.conversationsCount;
+				});
+				
+				var userTwoId = sortedUserList[0].userid;
+				console.log(userTwoId);
+
+
+			var userTwoRef = new Firebase(("https://goconverse.firebaseio.com/users/").concat(userTwoId));
 			
 			// Creating a new conversation
 			var conversations = new Firebase("https://goconverse.firebaseio.com/conversations/");
@@ -77,11 +104,16 @@
 				"participants": 
 				{
 					userOne: userId,
-					userTwo: userFound
+					userTwo: userTwoId
 				},
 				"messages": 
 				{
 					init: ""
+				},
+				mostRecent: 
+				{
+					message: "",
+					timestamp: ""
 				}
 			});
 			
@@ -91,17 +123,18 @@
 			// Add user file references to conversation
 			userOneRef.child("conversations").child(conversationId).set({
 				participants: {
-					userId: userFound
+					userId: userId
 				},
 				mostRecent: {
 					message: "",
-					timestamp: ""
+					timestamp: "hiya there! lel"
 				}
 			});
 			
 			userTwoRef.child("conversations").child(conversationId).set({
 				participants: {
-					userId: userId
+					userId: userTwoId,
+					otheruserid: userId
 				},
 				mostRecent: {
 					message: "",
@@ -111,11 +144,15 @@
 			
 			// Redirect to conversation page
 			
-			var urladd="?convoId=sampleId";
+			var urladd="?convoId=" + conversationId;
 			window.location.href = "http://www.conversewithothers.co/messaging.html" + urladd;
 			
 
-
+			}, 
+			function (errorObject)
+			{
+				console.log("The read failed: " + errorObject.code);
+			});
 			
 
 						

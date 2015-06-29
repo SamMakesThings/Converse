@@ -41,21 +41,21 @@
 </script>
 <script type="text/javascript">
 
- 	var ref = new Firebase("https://goconverse.firebaseio.com/users");
+	// Filters out same-country users and sorts by number of conversations
+
+ 	var usersRef = new Firebase("https://goconverse.firebaseio.com/users");
 	
 	var usersList = [];
-	
-	ref.once("value", function(snapshot)
+
+	usersRef.once("value", function(snapshot)
 	{
 		var simpleIdTicker = 61;
-		// console.log(snapshot.val());
-		// console.log(snapshot.child("simplelogin:" + simpleIdTicker).child("country").val());
 		
 		while (simpleIdTicker < 100)
 		{
 			if (snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() == "USA" && snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() != null)
 			{
-				console.log(snapshot.child("simplelogin:" + simpleIdTicker).val());
+				// console.log(snapshot.child("simplelogin:" + simpleIdTicker).val());
 				usersList.push(snapshot.child("simplelogin:" + simpleIdTicker).val());
 				simpleIdTicker++;
 			}
@@ -65,21 +65,18 @@
 			}
 		}
 		
-		console.log(usersList);
-		
-		var sortedUserList = usersList.sort(function(a, b){
+		var sortedUserList = usersList.sort(function(a, b)
+		{
 		return a.conversationsCount - b.conversationsCount;
 		});
 		
-		console.log(sortedUserList);
-		
+		var userTwoId = sortedUserList[0].userid;
+		console.log(userTwoId);
+
 	}, 
 	function (errorObject)
 	{
 		console.log("The read failed: " + errorObject.code);
 	});
-	
-	
-
 </script>
 </body>
