@@ -7,53 +7,56 @@
 </head>
 <body>
 <script type="text/javascript">
-/*
+
 	var ref = new Firebase("https://goconverse.firebaseio.com/users");
-	ref.once("value", function(snapshot)
-	{
-		var simpleIdTicker = 51;
-		while (simpleIdTicker < 64)
-		{
-			if (new Firebase("https://goconverse.firebaseio.com/users/simplelogin:" + simpleIdTicker).val != "the USA")
-			{
-				console.log("simplelogin:" + simpleIdTicker);
-				simpleIdTicker++;
-			}
-			else
-			{
-				simpleIdTicker++;
-			};
-			
-			console.log(new Firebase("https://goconverse.firebaseio.com/users/simplelogin:" + simpleIdTicker));
-		}
-	}, 
-	function (errorObject)
-	{
-		console.log("The read failed: " + errorObject.code);
-	});
 	
+	// Counts the total number of registered users
+	/*
+	function usersCount()
+	{
+		ref.once("value", function(snapshot)
+		{
+			var simpleIdTicker = 61;
+			var simpleIdTotal = 0;
+			// console.log(snapshot.val());
+			// console.log(snapshot.child("simplelogin:" + simpleIdTicker).child("country").val());
+			
+			while (snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() != null)
+			{
+				simpleIdTicker++;
+				simpleIdTotal++;
+			}
+			console.log("The last user element is simplelogin:" + simpleIdTicker);
+			console.log("There are " + simpleIdTotal + " users registered.");
+			
+		}, 
+		function (errorObject)
+		{
+			console.log("The read failed: " + errorObject.code);
+		});
+	}
 	
 	*/
-	
 
 </script>
 <script type="text/javascript">
 
-	var ref = new Firebase("https://goconverse.firebaseio.com/users");
+ 	var ref = new Firebase("https://goconverse.firebaseio.com/users");
 	
-	var usersList;
+	var usersList = [];
 	
 	ref.once("value", function(snapshot)
 	{
 		var simpleIdTicker = 61;
-		console.log(snapshot.val());
+		// console.log(snapshot.val());
 		// console.log(snapshot.child("simplelogin:" + simpleIdTicker).child("country").val());
 		
-		while (simpleIdTicker < 80)
+		while (simpleIdTicker < 100)
 		{
-			if (snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() != "USA" && snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() != null)
+			if (snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() == "USA" && snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() != null)
 			{
 				console.log(snapshot.child("simplelogin:" + simpleIdTicker).val());
+				usersList.push(snapshot.child("simplelogin:" + simpleIdTicker).val());
 				simpleIdTicker++;
 			}
 			else
@@ -62,7 +65,14 @@
 			}
 		}
 		
-
+		console.log(usersList);
+		
+		var sortedUserList = usersList.sort(function(a, b){
+		return a.conversationsCount - b.conversationsCount;
+		});
+		
+		console.log(sortedUserList);
+		
 	}, 
 	function (errorObject)
 	{
