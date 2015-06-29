@@ -36,19 +36,19 @@
   <script>
 			// Create a reference to Converse's Firebase url
 			var ref = new Firebase("https://goconverse.firebaseio.com");
-			
+
 			var userId;
 
 		  // Create a callback which logs the current auth state
-			function authDataCallback(authData) 
+			function authDataCallback(authData)
 			{
 			var usersRef = new Firebase("https://goconverse.firebaseio.com/users");
-			  if (authData) 
+			  if (authData)
 			  {
 				console.log("User " + authData.uid + " is logged in with " + authData.provider);
 				userId = authData.uid;
 			  }
-			  else 
+			  else
 			  {
 				console.log("User is logged out");
 				window.location = "loggedout.html";
@@ -57,20 +57,20 @@
 
 			// Register the callback to be fired every time auth state changes
 			ref.onAuth(authDataCallback);
-			
+
 			// User matching algorithm
 			var userOneRef = new Firebase(("https://goconverse.firebaseio.com/users/").concat(userId));
-			
+
 			// Filters out same-country users and sorts by number of conversations
 
 			var usersRef = new Firebase("https://goconverse.firebaseio.com/users");
-			
+
 			var usersList = [];
 
 			usersRef.once("value", function(snapshot)
 			{
 				var simpleIdTicker = 61;
-				
+
 				while (simpleIdTicker < 100)
 				{
 					if (snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() == "USA" && snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() != null)
@@ -84,42 +84,42 @@
 						simpleIdTicker++;
 					}
 				}
-				
+
 				var sortedUserList = usersList.sort(function(a, b)
 				{
 				return a.conversationsCount - b.conversationsCount;
 				});
-				
+
 				var userTwoId = sortedUserList[0].userid;
 				console.log(userTwoId);
 
 
 			var userTwoRef = new Firebase(("https://goconverse.firebaseio.com/users/").concat(userTwoId));
-			
+
 			// Creating a new conversation
 			var conversations = new Firebase("https://goconverse.firebaseio.com/conversations/");
-			
+
 			var conversationRef = conversations.push(
 			{
-				"participants": 
+				"participants":
 				{
 					userOne: userId,
 					userTwo: userTwoId
 				},
-				"messages": 
+				"messages":
 				{
 					init: ""
 				},
-				mostRecent: 
+				mostRecent:
 				{
 					message: "",
 					timestamp: ""
 				}
 			});
-			
+
 			// Get unique conversation ID
 			var conversationId = conversationRef.key();
-			
+
 			// Add user file references to conversation
 			userOneRef.child("conversations").child(conversationId).set({
 				participants: {
@@ -127,10 +127,10 @@
 				},
 				mostRecent: {
 					message: "",
-					timestamp: "hiya there! lel"
+					timestamp: ""
 				}
 			});
-			
+
 			userTwoRef.child("conversations").child(conversationId).set({
 				participants: {
 					userId: userTwoId,
@@ -141,25 +141,25 @@
 					timestamp: ""
 				}
 			});
-			
+
 			// Redirect to conversation page
-			
+
 			var urladd="?convoId=" + conversationId;
 			window.location.href = "http://www.conversewithothers.co/messaging.html" + urladd;
-			
 
-			}, 
+
+			},
 			function (errorObject)
 			{
 				console.log("The read failed: " + errorObject.code);
 			});
-			
 
-						
-				
-				
 
-			
+
+
+
+
+
   </script>
   <a class="w-inline-block go-top" href="#top" data-ix="hide"></a>
   <div class="w-nav navigation" id="top" data-collapse="medium" data-animation="default" data-duration="400" data-contain="1">
