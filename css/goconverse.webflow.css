@@ -829,6 +829,7 @@ p {
   background-image: -webkit-linear-gradient(#00c2a2 18%, #00a88c 97%);
   background-image: linear-gradient(#00c2a2 18%, #00a88c 97%);
   box-shadow: rgba(0, 0, 0, 0.22) 1px 1px 3px 0px;
+  text-align: left;
 }
 .message.right {
   margin: 4px 3% 4px 45%;
@@ -1169,4 +1170,3 @@ html.w-mod-js *[data-ix="hide-scrollnav"] {
     box-shadow: none;
   }
 }
-

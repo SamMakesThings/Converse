@@ -126,7 +126,8 @@
 			userOneRef.child("conversations").child(conversationId).set({
 				participants:
         {
-					userId: userId
+					userId: userId,
+          otheruserid: userTwoId
 				},
 				mostRecent:
         {
