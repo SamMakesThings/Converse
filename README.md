@@ -9,10 +9,11 @@ Current features:
 - Users can log in and log out
 - Users will soon be able to start new conversations (backend is ready)
 - Successfully hosted on Azure
+- Now matches users from other countries with the lowest number of conversations
+- Users can actually messages on the messaging page
 
 Currently working on:
-- Messaging page function
-- User matching function
+- Timestamps
 - Home page for logged-in users
 - Improve user flow through home page
 - Tidier source files
