@@ -73,7 +73,7 @@
 
 				while (simpleIdTicker < 100)
 				{
-					if (snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() == "USA" && snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() != null)
+					if (snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() != "USA" && snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() != null)
 					{
 						// console.log(snapshot.child("simplelogin:" + simpleIdTicker).val());
 						usersList.push(snapshot.child("simplelogin:" + simpleIdTicker).val());
@@ -120,15 +120,20 @@
 			// Get unique conversation ID
 			var conversationId = conversationRef.key();
 
+      conversationRef.update({conversationId: conversationId})
+
 			// Add user file references to conversation
 			userOneRef.child("conversations").child(conversationId).set({
-				participants: {
+				participants:
+        {
 					userId: userId
 				},
-				mostRecent: {
+				mostRecent:
+        {
 					message: "",
 					timestamp: ""
-				}
+				},
+        conversationId: conversationId
 			});
 
 			userTwoRef.child("conversations").child(conversationId).set({
@@ -139,13 +144,14 @@
 				mostRecent: {
 					message: "",
 					timestamp: ""
-				}
+				},
+        conversationId: conversationId
 			});
 
 			// Redirect to conversation page
 
-			var urladd="?convoId=" + conversationId;
-			window.location.href = "http://www.conversewithothers.co/messaging.html" + urladd;
+			var urladd="?conversationId=" + conversationId;
+			window.location.href = "file:///C:/Users/phant_000/Desktop/Converse/Converse/messaging.html" + urladd;
 
 
 			},

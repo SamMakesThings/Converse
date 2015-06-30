@@ -102,32 +102,38 @@
 				var conversationsRef = new Firebase("https://goconverse.firebaseio.com/conversations");
 				var currentConversationRef = new Firebase("https://goconverse.firebaseio.com/conversations/" + conversationId);
 
-        console.log(currentConversationRef.val());
+				// Function to populate page with old messages
 
-        // New message listener
-
-
-
-				// function sendMessage()
-				function sendMessage(message, timestamp)
+        // function sendMessage()
+				function sendMessage()
 				{
+          var message = document.getElementById("field").value;
+          var timestamp = "4:23:56 29 June 2015";
+          var sentBy = userId;
+          currentConversationRef.child("messages").push(
+            {
+              message: message,
+              timestamp: timestamp,
+              author: userId
+            })
 
+          console.log(message);
+          console.log(timestamp);
+          console.log(sentBy);
+          document.getElementById("field").value="";
 				}
 
-				// Conversation updating script
+				// New message listener
+
+
 			  </script>
           </div>
           <div class="sending">
             <div class="w-form">
               <form class="form" id="email-form" name="email-form" data-name="Email Form">
-                <textarea class="w-input body-div messaging-div new-thing" id="field" placeholder="Type your message here" name="field" autofocus="autofocus"></textarea><a class="button btn-dark messaging-button" href="#about">Send Message</a>
+                <textarea class="w-input body-div messaging-div new-thing" id="field" placeholder="Type your message here" value="" name="field" autofocus="autofocus"></textarea>
+                <a class="button btn-dark messaging-button" id="button" onclick="sendMessage()">Send Message</a>
               </form>
-              <div class="w-form-done">
-                <p>Thank you! Your submission has been received!</p>
-              </div>
-              <div class="w-form-fail">
-                <p>Oops! Something went wrong while submitting the form</p>
-              </div>
             </div>
           </div>
         </div>
