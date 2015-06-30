@@ -35,13 +35,13 @@
   <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
   <script>
 	  var ref = new Firebase("https://goconverse.firebaseio.com/");
-		
+
 		// Function called when form is submitted - Calls createUser() then adds their userID, name, and reasons for joining to Firebase.
 		function createCredentials()
 		{
 			// Changing the button value to a waiting message
 			document.getElementById("Submit").setAttribute("value", "Please wait...");
-			
+
 			// Calling Firebase's createUser()
 			ref.createUser(
 			{
@@ -69,8 +69,8 @@
 				  default:
 					console.log("Error creating user:", error);
 				}
-			  } 
-			  else 
+			  }
+			  else
 			  {
 				// On success, log userID
 				console.log("Successfully created user account with uid:", userData.uid);
@@ -90,7 +90,7 @@
 					userid: userData.uid
 				});
 				// ...then redirect the user to the success page
-				window.location.href="success.html"; 
+				window.location.href="success.html";
 			  }
 			});
 		}

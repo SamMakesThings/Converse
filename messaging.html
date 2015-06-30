@@ -52,8 +52,91 @@
 			  }
 			};
 
-			// Register the callback to be fired every time auth state changes
+      // Register the callback to be fired every time auth state changes
 			ref.onAuth(authDataCallback);
+
+      // Function to retrieve convoId from the url
+      var pageUrl = window.location.href;
+      function getConvoId()
+      {
+        var indexOfConvoId = pageUrl.lastIndexOf("=");
+        return pageUrl.substring(indexOfConvoId + 1);
+      }
+      var conversationId = getConvoId();
+
+      // References to Firebase
+      var ref = new Firebase("https://goconverse.firebaseio.com");
+      var conversationsRef = new Firebase("https://goconverse.firebaseio.com/conversations/");
+      var currentConversationRef = new Firebase("https://goconverse.firebaseio.com/conversations/" + conversationId);
+      var usersRef = new Firebase("https://goconverse.firebaseio.com/users/");
+      var userOneRef = new Firebase("https://goconverse.firebaseio.com/users/" + userId);
+
+      // function sendMessage()
+      function sendMessage()
+      {
+        var message = document.getElementById("field").value;
+        var timestamp = "4:23:56 29 June 2015";
+        var sentBy = userId;
+        currentConversationRef.child("messages").push(
+          {
+            message: message,
+            timestamp: timestamp,
+            author: userId
+          })
+        document.getElementById("field").value="";
+      }
+
+      // Populate user name sections
+      userOneRef.on("value", function(userInfoRef)
+      {
+        if (userInfoRef)
+        {
+          var userOneRefTwo = userInfoRef.val();
+          var userOneName = userOneRefTwo.firstname + " " + userOneRefTwo.lastname;
+          console.log(userOneName);
+          document.getElementById("user one name").innerHTML = userOneName;
+
+          // Populate user two's information
+          var userConversation = userOneRefTwo.conversations;
+          var currentUserConversation = userConversation[conversationId];
+          var currentConversationParticipants = currentUserConversation.participants;
+          var userTwoId = currentConversationParticipants.otheruserid;
+
+          var userTwoRef = new Firebase("https://goconverse.firebaseio.com/users/" + userTwoId);
+          userTwoRef.on("value", function(userInfoRefTwo)
+          {
+            var userTwoRefTwo = userInfoRefTwo.val();
+            var userTwoName = userTwoRefTwo.firstname + " " + userTwoRefTwo.lastname;
+            console.log(userTwoName);
+            document.getElementById("user two name").innerHTML = userTwoName;
+          })
+
+
+        }
+        else
+        {
+          console.log("There was an error populating the user's name.");
+        }
+      });
+
+      // New message listener
+      currentConversationRef.child("messages").on("child_added", function(snapshot, prevChildKey)
+      {
+
+        var newMessage = snapshot.val();
+        // console.log(newMessage.message);
+
+        if (newMessage.author == userId)
+        {
+          document.getElementById("messaging box").insertAdjacentHTML("beforeend", '<div class="message left">' + newMessage.message + '</div>');
+          document.getElementById("messaging box").insertAdjacentHTML("beforeend", '<div class="timestamp user-one"> Sent at ' + newMessage.timestamp + '</div>');
+        }
+        else
+        {
+          document.getElementById("messaging box").insertAdjacentHTML("beforeend", '<div class="message right">' + newMessage.message + '</div>');
+          document.getElementById("messaging box").insertAdjacentHTML("beforeend", '<div class="timestamp user-two"> Sent at ' + newMessage.timestamp + '</div>');
+        }
+      });
 	</script>
   </style>
 </head>
@@ -73,57 +156,21 @@
   <div class="w-section messaging">
     <div class="w-row messaging-row user-info">
       <div class="w-col w-col-3 person"><img class="user-self" src="images/Person One.jpg" width="196">
-        <h3>Sam stowers</h3>
+        <h3 id = "user one name">Sam stowers</h3>
         <p>From the United States of America
           <br>Enjoys singing, ukulele, and programming
           <br>Studies at the University of Missouri</p>
       </div>
       <div class="w-col w-col-6">
         <div class="messaging-div shadowless"><img class="messaging-title" src="images/converseBlackTrans.png" width="177">
-          <div class="messaging-div body-div">
-
-			<div class="message left" id="dad">Hi Enton! What does a longer paragraph look like? I'm simply going to keep typing until I see my plan clearly.</div>
+          <div class="messaging-div body-div" id="messaging box">
+			      <div class="message left">Hi Enton! What does a longer paragraph look like? I'm simply going to keep typing until I see my plan clearly.</div>
             <div class="timestamp"><span class="timestamp user-one">Sent at 6:15pm</span></div>
             <div class="message right">Hi Sam? Where are you from?</div>
             <div class="timestamp"><span class="timestamp user-two">Sent at 8:17pm</span></div>
 
 			<script>
-			  // Function to retrieve convoId from the url
-        var pageUrl = window.location.href;
-        function getConvoId()
-        {
-          var indexOfConvoId = pageUrl.lastIndexOf("=");
-          return pageUrl.substring(indexOfConvoId + 1);
-        }
-        var conversationId = getConvoId();
 
-				// References to Firebase
-				var ref = new Firebase("https://goconverse.firebaseio.com");
-				var conversationsRef = new Firebase("https://goconverse.firebaseio.com/conversations");
-				var currentConversationRef = new Firebase("https://goconverse.firebaseio.com/conversations/" + conversationId);
-
-				// Function to populate page with old messages
-
-        // function sendMessage()
-				function sendMessage()
-				{
-          var message = document.getElementById("field").value;
-          var timestamp = "4:23:56 29 June 2015";
-          var sentBy = userId;
-          currentConversationRef.child("messages").push(
-            {
-              message: message,
-              timestamp: timestamp,
-              author: userId
-            })
-
-          console.log(message);
-          console.log(timestamp);
-          console.log(sentBy);
-          document.getElementById("field").value="";
-				}
-
-				// New message listener
 
 
 			  </script>
@@ -139,7 +186,7 @@
         </div>
       </div>
       <div class="w-col w-col-3 person"><img class="user-self" src="images/Person Two.jpg" width="196">
-        <h3>Enton Lok</h3>
+        <h3 id="user two name">Enton Lok</h3>
         <p>From The People’s Republic of China
           <br>Is a graphic designer
           <br>Lives in&nbsp;Macau, China</p>
