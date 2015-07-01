@@ -1,4 +1,6 @@
 body {
+  -webkit-transition: all 300ms ease;
+  transition: all 300ms ease;
   font-family: Lato, sans-serif;
   color: #333;
   font-size: 14px;
@@ -102,6 +104,9 @@ p {
 }
 .button.btn-dark.messaging-button:hover {
   background-color: #11b297;
+}
+.button.btn-dark.other {
+  margin-bottom: 0px;
 }
 .button.s-button {
   display: inline-block;
@@ -828,7 +833,7 @@ p {
   background-color: #00c2a2;
   background-image: -webkit-linear-gradient(#00c2a2 18%, #00a88c 97%);
   background-image: linear-gradient(#00c2a2 18%, #00a88c 97%);
-  box-shadow: rgba(0, 0, 0, 0.22) 1px 1px 3px 0px;
+  box-shadow: rgba(0, 0, 0, 0.24) 1px 1px 3px 0px;
   text-align: left;
 }
 .message.right {
@@ -839,7 +844,7 @@ p {
   background-color: #fec700;
   background-image: -webkit-linear-gradient(#fec700, #edba00);
   background-image: linear-gradient(#fec700, #edba00);
-  box-shadow: rgba(0, 0, 0, 0.22) 1px 1px 3px 0px;
+  box-shadow: rgba(0, 0, 0, 0.24) 1px 1px 3px 0px;
   color: black;
   text-align: right;
 }
@@ -868,6 +873,9 @@ p {
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.24) 1px 1px 5px 0px inset;
 }
+.messaging-div.body-div.recent-conversations {
+  padding-top: 0px;
+}
 .messaging-div.shadowless {
   position: relative;
   overflow-x: visible;
@@ -888,6 +896,7 @@ p {
 .user-self {
   display: block;
   margin-right: auto;
+  margin-bottom: 15px;
   margin-left: auto;
   text-align: center;
 }
@@ -901,7 +910,7 @@ p {
 }
 .person {
   display: block;
-  padding-top: 15px;
+  padding: 15px;
   box-shadow: rgba(0, 0, 0, 0.24) 1px 1px 5px 0px;
 }
 .loading-icon {
@@ -946,6 +955,32 @@ p {
   padding-left: 12px;
   border: 1px solid transparent;
   background-color: #f7f7f7;
+}
+.recent-conversation {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 1px solid #d9d9d9;
+  background-color: #f2f2f2;
+  -webkit-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+.recent-conversation:hover {
+  background-color: transparent;
+}
+.recent-name {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-left: 30px;
+  font-size: 18px;
+  text-align: left;
+}
+.recent-details {
+  margin-bottom: 0px;
+  padding-left: 30px;
+  text-align: left;
+}
+.recent-paragraph {
+  margin-top: -15px;
 }
 html.w-mod-js *[data-ix="portfolio-overlay"] {
   -webkit-transform: translate(0px, -1000px);
@@ -1170,3 +1205,4 @@ html.w-mod-js *[data-ix="hide-scrollnav"] {
     box-shadow: none;
   }
 }
+
