@@ -69,6 +69,7 @@
 
 			usersRef.once("value", function(snapshot)
 			{
+        // Filter out all users from the same country
 				var simpleIdTicker = 61;
 
 				while (simpleIdTicker < 100)
@@ -85,6 +86,7 @@
 					}
 				}
 
+        // Sort users by number of conversations in ascending order
 				var sortedUserList = usersList.sort(function(a, b)
 				{
 				return a.conversationsCount - b.conversationsCount;
@@ -94,11 +96,31 @@
         var userTwoFirstName = sortedUserList[0].firstname;
         var userTwoLastName = sortedUserList[0].lastname;
         var userTwoName = sortedUserList[0].firstname + " " + sortedUserList[0].lastname;
+        var userTwoConversationsCount = sortedUserList[0].conversationsCount;
 				console.log("Starting a conversation with " + userTwoName + ", registered as " + userTwoId);
 
+        // Increment users' conversations counts
+        userOneRef.once("value", function(snapshotish, useless)
+        {
+          var userOneSnapshot = snapshotish.val();
+          var newUserOneConvoCount = userOneSnapshot.conversationsCount + 1;
+          userOneRef.update(
+          {
+            conversationsCount: newUserOneConvoCount
+          });
+        });
 
+			  var userTwoRef = new Firebase(("https://goconverse.firebaseio.com/users/").concat(userTwoId));
 
-			var userTwoRef = new Firebase(("https://goconverse.firebaseio.com/users/").concat(userTwoId));
+        userTwoRef.once("value", function(snapshotish, useless)
+        {
+          var userTwoSnapshot = snapshotish.val();
+          var newUserTwoConvoCount = userTwoSnapshot.conversationsCount + 1;
+          userTwoRef.update(
+          {
+            conversationsCount: newUserTwoConvoCount
+          });
+        });
 
 			// Creating a new conversation
 			var conversations = new Firebase("https://goconverse.firebaseio.com/conversations/");

@@ -75,7 +75,8 @@
       function sendMessage()
       {
         var message = document.getElementById("field").value;
-        var timestamp = "4:23:56 29 June 2015";
+        var time = new Date();
+        var timestamp = time.toLocaleString();
         var sentBy = userId;
         currentConversationRef.child("messages").push(
           {
@@ -136,12 +137,12 @@
         if (newMessage.author == userId)
         {
           document.getElementById("messaging box").insertAdjacentHTML("beforeend", '<div class="message left">' + newMessage.message + '</div>');
-          document.getElementById("messaging box").insertAdjacentHTML("beforeend", '<div class="timestamp user-one"> Sent at ' + newMessage.timestamp + '</div>');
+          document.getElementById("messaging box").insertAdjacentHTML("beforeend", '<div class="timestamp user-one"> Sent ' + newMessage.timestamp + '</div>');
         }
         else
         {
           document.getElementById("messaging box").insertAdjacentHTML("beforeend", '<div class="message right">' + newMessage.message + '</div>');
-          document.getElementById("messaging box").insertAdjacentHTML("beforeend", '<div class="timestamp user-two"> Sent at ' + newMessage.timestamp + '</div>');
+          document.getElementById("messaging box").insertAdjacentHTML("beforeend", '<div class="timestamp user-two"> Sent ' + newMessage.timestamp + '</div>');
         }
       });
 	</script>
