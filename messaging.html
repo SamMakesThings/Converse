@@ -103,6 +103,7 @@
           var userOneName = userOneRefTwo.firstname + " " + userOneRefTwo.lastname;
           console.log(userOneName);
           document.getElementById("user one name").innerHTML = userOneName;
+          document.getElementById("user one info").innerHTML = userOneRefTwo.interests;
 
           // Populate user two's information
           var userConversation = userOneRefTwo.conversations;
@@ -117,6 +118,7 @@
             var userTwoName = userTwoRefTwo.firstname + " " + userTwoRefTwo.lastname;
             console.log(userTwoName);
             document.getElementById("user two name").innerHTML = userTwoName;
+            document.getElementById("user two info").innerHTML = userTwoRefTwo.interests;
           })
 
 
@@ -145,6 +147,8 @@
           document.getElementById("messaging box").insertAdjacentHTML("beforeend", '<div class="timestamp user-two"> Sent ' + newMessage.timestamp + '</div>');
         }
       });
+
+
 	</script>
   </style>
 </head>
@@ -163,21 +167,16 @@
   </div>
   <div class="w-section messaging">
     <div class="w-row messaging-row user-info">
-      <div class="w-col w-col-3 person"><img class="user-self" src="images/Person One.jpg" width="196">
+      <div class="w-col w-col-3 person"><img class="user-self" src="images/UserOnePic.png" width="196">
         <h3 id = "user one name">Sam stowers</h3>
-        <p>From the United States of America
+        <p id="user one info">From the United States of America
           <br>Enjoys singing, ukulele, and programming
           <br>Studies at the University of Missouri</p>
       </div>
       <div class="w-col w-col-6">
         <div class="messaging-div shadowless"><img class="messaging-title" src="images/converseBlackTrans.png" width="177">
           <div class="messaging-div body-div" id="messaging box">
-
-			<script>
-
-
-
-			  </script>
+            <!-- Messages go here -->
           </div>
           <div class="sending">
             <div class="w-form">
@@ -189,9 +188,9 @@
           </div>
         </div>
       </div>
-      <div class="w-col w-col-3 person"><img class="user-self" src="images/Person Two.jpg" width="196">
+      <div class="w-col w-col-3 person"><img class="user-self" src="images/UserTwoPic.png" width="196">
         <h3 id="user two name">Enton Lok</h3>
-        <p>From The People’s Republic of China
+        <p id="user two info">From The People’s Republic of China
           <br>Is a graphic designer
           <br>Lives in&nbsp;Macau, China</p>
       </div>
@@ -209,5 +208,6 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/webflow.js"></script>
   <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+  <!-- People icons made by Google from http://www.flaticon.com, and is licensed under Creative Commons BY 3.0 -->
 </body>
 </html>
