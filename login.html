@@ -30,36 +30,36 @@
         background-color: #e5e5e5; !important
     }
   </style>
-  
+
   <!-- Begin non-Webflow code -->
   <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
   <script>
 	var ref = new Firebase("https://goconverse.firebaseio.com");
-	
-	
-	
+
+
+
 	// Firebase user authentication (email and password only)
 	function logIn()
 	{
 		// Change button value to waiting message
 		document.getElementById("Log In").setAttribute("value", "Please wait...");
-		
+
 		// Calling Firebase code
 		ref.authWithPassword({
 		  email    : document.getElementById("Email").value,
 		  password : document.getElementById("Password").value
-		}, 
-		function(error, authData) 
+		},
+		function(error, authData)
 		{
-		  if (error) 
+		  if (error)
 		  {
 			console.log("Login Failed!", error);
 			document.getElementById('Log In').setAttribute("value", "Error logging in");
-		  } 
-		  else 
+		  }
+		  else
 		  {
 			console.log("Authenticated successfully with payload:", authData);
-			
+
 			// Redirect to placeholder page (will eventually be the main page)
 			window.location.href="placeholder.html";
 		  }
@@ -75,7 +75,7 @@
     <div class="w-container">
       <a class="w-nav-brand barnd" href="index.html"><img src="images/converseWhiteTrans.png" width="185" alt="54f92e1073ee3d0b0579604b_converseWhiteTrans.png">
       </a>
-      <nav class="w-nav-menu nav-menu" role="navigation"><a class="w-nav-link nav-link" href="index.html">Home</a><a class="w-nav-link nav-link" href="login.html">Log In</a><a class="w-nav-link nav-link" href="signup.html">Sign Up</a>
+      <nav class="w-nav-menu nav-menu" role="navigation"><a class="w-nav-link nav-link" href="homepage.html">Home</a><a class="w-nav-link nav-link" href="login.html">Log In</a><a class="w-nav-link nav-link" href="signup.html">Sign Up</a>
       </nav>
       <div class="w-nav-button menu-ham">
         <div class="w-icon-nav-menu"></div>
