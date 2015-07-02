@@ -30,6 +30,76 @@
         background-color: #e5e5e5; !important
     }
   </style>
+  <script src="https://cdn.firebase.com/js/client/2.2.6/firebase.js"></script>
+  <script>
+      // Checks the user's auth state
+      var ref = new Firebase("https://goconverse.firebaseio.com");
+
+      var userId;
+
+      function authDataCallback(authData)
+      {
+      var usersRef = new Firebase("https://goconverse.firebaseio.com/users");
+        if (authData)
+        {
+        console.log("User " + authData.uid + " is logged in with " + authData.provider);
+        userId = authData.uid;
+        }
+        else
+        {
+        console.log("User is logged out");
+        window.location = "loggedout.html";
+        }
+      };
+
+      // Register the callback to be fired every time auth state changes
+      ref.onAuth(authDataCallback);
+
+      // Firebase references
+      var ref = new Firebase("https://goconverse.firebaseio.com");
+      var conversationsRef = new Firebase("https://goconverse.firebaseio.com/conversations/");
+      var usersRef = new Firebase("https://goconverse.firebaseio.com/users/");
+      var userOneRef = new Firebase("https://goconverse.firebaseio.com/users/" + userId);
+
+      // Adds link functionality to conversation list
+      function redirectToConversation(convoId)
+      {
+          window.location.href = "http://www.conversewithothers.co/messaging.html?convoId=" + convoId;
+      }
+
+      // List recent user conversations
+      userOneRef.child("conversations").on("child_added", function(snapshot, prevChildKey)
+      {
+
+        // var recentConversation = snapshot.val();
+        // Get user two's ID
+        var usersConversationRef = snapshot.val();
+        var usersConversationId = usersConversationRef.conversationId;
+        var participantsRef = usersConversationRef.participants;
+        var userTwoId = participantsRef.otheruserid;
+
+        // Get user two's name
+        var userTwoNameRef = participantsRef.otherusername;
+        var userTwoName = userTwoNameRef.firstname + " " + userTwoNameRef.lastname;
+        console.log(userTwoName);
+
+        // Get information on the most recent message in the conversation
+        var mostRecentData = usersConversationRef.mostRecent
+        var mostRecentMessage = mostRecentData.message;
+        console.log(mostRecentMessage);
+        var mostRecentMessageAuthor = mostRecentData.author;
+        var mostRecentMessageTimestamp = mostRecentData.timestamp;
+
+        document.getElementById("conversations box").insertAdjacentHTML("beforeend", '<div class="recent-conversation" onclick="redirectToConversation(' + "&quot" + usersConversationId + "&quot" + ')"><h3 class="recent-name">' + userTwoName + '</h3><p class="recent-details">' + mostRecentMessage + '</p></div>');
+      });
+
+      // Welcome the user with a custom greeting
+      userOneRef.on("value", function(snapshot, prevChildKey)
+      {
+        var userOneRefRef = snapshot.val();
+        document.getElementById("welcome sign").insertAdjacentHTML("beforeend", userOneRefRef.firstname + "!");
+      })
+  </script>
 </head>
 <body>
   <a class="w-inline-block go-top" href="#top" data-ix="hide"></a>
@@ -50,19 +120,17 @@
         <div class="messaging-div shadowless">
           <h3>RECENT MESSAGES</h3>
           <p class="recent-paragraph">Click to open up an existing conversation.</p>
-          <div class="messaging-div body-div recent-conversations">
-            <div class="recent-conversation">
-              <h3 class="recent-name">Enton Lok</h3>
-              <p class="recent-details">“Where are you from, Sam? Cool beans!” at 3:23am</p>
-            </div>
+          <div class="messaging-div body-div recent-conversations" id="conversations box">
+            <!-- Conversations list goes here -->
           </div>
         </div>
       </div>
       <div class="w-col w-col-4">
-        <h3>WELCOME</h3>
+        <h3 id="welcome sign">WELCOME, </h3>
         <p class="recent-paragraph">How are you doing today?</p>
       </div>
-      <div class="w-col w-col-3 person"><img class="user-self" src="images/pencil_00c2a2_100.png" width="100"><a class="button btn-dark other messaging-button" href="#">New Conversation</a>
+      <div class="w-col w-col-3 person"><img class="user-self" src="images/pencil_00c2a2_100.png" width="100">
+        <a class="button btn-dark other messaging-button" href="http://www.conversewithothers.co/user-matching.html">New Conversation</a>
         <p>Click to start a new conversation!</p>
       </div>
     </div>
