@@ -32,9 +32,42 @@
         background-color: #e5e5e5; !important
     }
   </style>
-  <!--  Begin non-webflow code -->
+  <script>
+  // Checks the user's auth state
+  var ref = new Firebase("https://goconverse.firebaseio.com");
 
-  <!-- End non-webflow code -->
+  var userId;
+
+  function authDataCallback(authData)
+  {
+  var usersRef = new Firebase("https://goconverse.firebaseio.com/users");
+    if (authData)
+    {
+    console.log("User " + authData.uid + " is logged in with " + authData.provider);
+    userId = authData.uid;
+    }
+    else
+    {
+    console.log("User is logged out");
+    window.location = "loggedout.html";
+    }
+  };
+
+  // Register the callback to be fired every time auth state changes
+  ref.onAuth(authDataCallback);
+
+  // Firebase references
+  var usersRef = new Firebase("https://goconverse.firebaseio.com/users/");
+  var userOneRef = new Firebase("https://goconverse.firebaseio.com/users/" + userId);
+
+  // Welcome the user with a custom greeting
+  userOneRef.on("value", function(snapshot, prevChildKey)
+  {
+    var userOneRefRef = snapshot.val();
+    document.getElementById("greeting").insertAdjacentHTML("beforeend", "You have been logged in as " + userOneRefRef.firstname + ". Thanks for visiting! We will be launching on July 10th.");
+  })
+
+  </script>
 </head>
 <body>
   <a class="w-inline-block go-top" href="#top" data-ix="hide"></a>
@@ -53,37 +86,7 @@
     <div class="w-container">
       <div class="div-center">
         <h1 class="h-inner" data-ix=" text-inner"><span class="white-2">Success!</span></h1>
-		  <div class="sub-text" id="userMessage" data-ix="text-inner-2">
-		  You have been logged in as 
-			<script>
-			// Create a reference to Converse's Firebase url
-			var ref = new Firebase("https://goconverse.firebaseio.com");
-
-		  // Create a callback which logs the current auth state
-			function authDataCallback(authData) 
-			{
-			var usersRef = new Firebase("https://goconverse.firebaseio.com/users");
-			  if (authData) 
-			  {
-				console.log("User " + authData.uid + " is logged in with " + authData.provider);
-				usersRef.child(authData.uid).child("name").on("value", function(usersName)
-					{
-						document.getElementById("userMessage").innerHTML = "You have been logged in as " + usersName.val() + ". Thanks for visiting! We'll be operational soon.";
-					}
-					);
-			  }
-			  else
-			  {
-				console.log("User is logged out");
-				window.location = "loggedout.html";
-			  }
-			};
-
-			// Register the callback to be fired every time auth state changes
-			ref.onAuth(authDataCallback);
-			
-
-		  </script>. Don’t worry, we’ll be operational soon.
+		  <div class="sub-text" id="greeting" data-ix="text-inner-2">
 		</div>
 	<div class="div-spc _2x center">
         <div class="div-spc _2x _4x">
