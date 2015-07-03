@@ -11,11 +11,11 @@ Current features:
 - Successfully hosted on Azure
 - Now matches users from other countries with the lowest number of conversations
 - Users can actually messages on the messaging page
-
-Currently working on:
 - Timestamps
 - Home page for logged-in users
-- Improve user flow through home page
+
+Currently working on:
+- Updated homepage with custom graphics
 - Tidier source files
 
 Planned features (in rough chronological order):
