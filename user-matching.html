@@ -92,6 +92,7 @@
 				return a.conversationsCount - b.conversationsCount;
 				});
 
+
 				var userTwoId = sortedUserList[0].userid;
         var userTwoFirstName = sortedUserList[0].firstname;
         var userTwoLastName = sortedUserList[0].lastname;
@@ -99,18 +100,26 @@
         var userTwoConversationsCount = sortedUserList[0].conversationsCount;
 				console.log("Starting a conversation with " + userTwoName + ", registered as " + userTwoId);
 
+        var userTwoRef = new Firebase(("https://goconverse.firebaseio.com/users/").concat(userTwoId));
+
         // Increment users' conversations counts
         userOneRef.once("value", function(snapshotish, useless)
         {
           var userOneSnapshot = snapshotish.val();
           var newUserOneConvoCount = userOneSnapshot.conversationsCount + 1;
+          var userOneFirstName = userOneSnapshot.firstname;
+          var userOneLastName = userOneSnapshot.lastname;
+
+          userTwoRef.update(
+          {
+
+          })
+
           userOneRef.update(
           {
             conversationsCount: newUserOneConvoCount
           });
         });
-
-			  var userTwoRef = new Firebase(("https://goconverse.firebaseio.com/users/").concat(userTwoId));
 
         userTwoRef.once("value", function(snapshotish, useless)
         {
@@ -131,10 +140,6 @@
 				{
 					userOne: userId,
 					userTwo: userTwoId
-				},
-				"messages":
-				{
-					init: ""
 				},
 				mostRecent:
 				{
@@ -174,8 +179,8 @@
 					otheruserid: userId,
           otherusername:
           {
-            firstname: userTwoFirstName,
-            lastname: userTwoLastName
+            firstname: "userOneFirstName",
+            lastname: "userOneLastName"
           }
 				},
 				mostRecent: {
@@ -184,6 +189,24 @@
 				},
         conversationId: conversationId
 			});
+
+      // Add user one's name to user two's conversation data
+      userOneRef.on("value", function(snappish, useless)
+      {
+        var userOneRefSnapshot = snappish.val();
+        var userOneFirstName = userOneRefSnapshot.firstname;
+        var userOneLastName = userOneRefSnapshot.lastname;
+        userTwoRef.child("conversations").child(conversationId).child("participants").update(
+        {
+          otherusername:
+          {
+            firstname: userOneFirstName,
+            lastname: userOneLastName
+          }
+        });
+      });
+
+
 
 			// Redirect to conversation page
 
