@@ -92,6 +92,40 @@
           timestamp: timestamp,
           author: userId
         })
+
+        // Add user file references to most recent message
+        userOneRef.on("value", function(snapshot)
+        {
+          if (snapshot)
+          {
+            var userOneRefTwo = snapshot.val();
+
+            userOneRef.child("conversations").child(conversationId).child("mostRecent").update(
+            {
+              message: message,
+              timestamp: timestamp,
+              author: userId
+            })
+
+            var userConversation = userOneRefTwo.conversations;
+            var currentUserConversation = userConversation[conversationId];
+            var currentConversationParticipants = currentUserConversation.participants;
+            var userTwoId = currentConversationParticipants.otheruserid;
+
+            var userTwoRef = new Firebase("https://goconverse.firebaseio.com/users/" + userTwoId);
+            userTwoRef.child("conversations").child(conversationId).child("mostRecent").update(
+            {
+              message: message,
+              timestamp: timestamp,
+              author: userId
+            })
+          }
+          else
+          {
+            console.log("There was an error populating the user's name.");
+          }
+        });
+
       }
 
       // Populate user name sections
@@ -120,8 +154,6 @@
             document.getElementById("user two name").innerHTML = userTwoName;
             document.getElementById("user two info").innerHTML = userTwoRefTwo.interests;
           })
-
-
         }
         else
         {
