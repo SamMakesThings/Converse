@@ -7,19 +7,21 @@ Current features:
 - Users can register their email and password
 - Associated additional information with user accounts (name, age, country, etc.)
 - Users can log in and log out
-- Users will soon be able to start new conversations (backend is ready)
+- Users able to start new conversations
 - Successfully hosted on Azure
-- Now matches users from other countries with the lowest number of conversations
-- Users can actually messages on the messaging page
+- Now matches users from other countries based on the lowest number of conversations
+- Users can send/receive messages on the messaging page
 - Timestamps
 - Home page for logged-in users
+- Updated homepage with custom graphics
 
 Currently working on:
-- Updated homepage with custom graphics
 - Tidier source files
+- Bug fixes
 
 Planned features (in rough chronological order):
 - Account email verification
+- Email notifications for new messages
 - Profile page, to view information about each user
 - "Status updates" where users can see updates from people they've talked to
 - News on main page relevant to people they've talked to
