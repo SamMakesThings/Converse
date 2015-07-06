@@ -961,8 +961,8 @@ p {
   padding-bottom: 5px;
   border: 1px solid #d9d9d9;
   background-color: #f2f2f2;
-  -webkit-transition: all 500ms ease;
-  transition: all 500ms ease;
+  -webkit-transition: all 250ms ease;
+  transition: all 250ms ease;
 }
 .recent-conversation:hover {
   background-color: transparent;
@@ -1205,4 +1205,3 @@ html.w-mod-js *[data-ix="hide-scrollnav"] {
     box-shadow: none;
   }
 }
-
