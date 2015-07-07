@@ -74,7 +74,7 @@
 
 				while (simpleIdTicker < 100)
 				{
-					if (snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() != "USA" && snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() != null)
+					if (snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() != snapshot.child(userId).child("country").val() && snapshot.child("simplelogin:" + simpleIdTicker).child("country").val() != null)
 					{
 						// console.log(snapshot.child("simplelogin:" + simpleIdTicker).val());
 						usersList.push(snapshot.child("simplelogin:" + simpleIdTicker).val());
