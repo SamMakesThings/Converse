@@ -94,7 +94,7 @@
       });
 
       // Welcome the user with a custom greeting
-      userOneRef.on("value", function(snapshot, prevChildKey)
+      userOneRef.once("value", function(snapshot, prevChildKey)
       {
         var userOneRefRef = snapshot.val();
         document.getElementById("welcome sign").insertAdjacentHTML("beforeend", userOneRefRef.firstname + "!");
