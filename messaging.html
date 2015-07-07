@@ -138,6 +138,7 @@
           console.log(userOneName);
           document.getElementById("user one name").innerHTML = userOneName;
           document.getElementById("user one info").innerHTML = userOneRefTwo.interests;
+          document.getElementById("user one info").insertAdjacentHTML("beforeend", "<br>Lives in " + userOneRefTwo.city + ", &nbsp" + userOneRefTwo.country);
 
           // Populate user two's information
           var userConversation = userOneRefTwo.conversations;
@@ -153,6 +154,7 @@
             console.log(userTwoName);
             document.getElementById("user two name").innerHTML = userTwoName;
             document.getElementById("user two info").innerHTML = userTwoRefTwo.interests;
+            document.getElementById("user two info").insertAdjacentHTML("beforeend", "<br>Lives in " + userTwoRefTwo.city + ", &nbsp" + userTwoRefTwo.country);
           })
         }
         else
@@ -200,10 +202,9 @@
   <div class="w-section messaging">
     <div class="w-row messaging-row user-info">
       <div class="w-col w-col-3 person"><img class="user-self" src="images/UserOnePic.png" width="196">
-        <h3 id = "user one name">Sam stowers</h3>
-        <p id="user one info">From the United States of America
-          <br>Enjoys singing, ukulele, and programming
-          <br>Studies at the University of Missouri</p>
+        <h3 id = "user one name">Please wait</h3>
+        <p id="user one info">Loading user info
+          <br>If this persists, please report the error.</p>
       </div>
       <div class="w-col w-col-6">
         <div class="messaging-div shadowless"><img class="messaging-title" src="images/converseBlackTrans.png" width="177">
@@ -221,10 +222,9 @@
         </div>
       </div>
       <div class="w-col w-col-3 person"><img class="user-self" src="images/UserTwoPic.png" width="196">
-        <h3 id="user two name">Enton Lok</h3>
-        <p id="user two info">From The People’s Republic of China
-          <br>Is a graphic designer
-          <br>Lives in&nbsp;Macau, China</p>
+        <h3 id="user two name">Please wait</h3>
+        <p id="user two info">Loading user info
+          <br>If this persists, please report the error.</p>
       </div>
     </div>
   </div>
