@@ -17,6 +17,8 @@ Current features:
 
 Currently working on:
 - Tidier source files
+- Platform security
+- Analytics
 - Bug fixes
 
 Planned features (in rough chronological order):
