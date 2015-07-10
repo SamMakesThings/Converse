@@ -84,6 +84,11 @@
         ref.unauth();
       }
 
+      window.onbeforeunload = function ()
+      {
+        customUnAuth();
+      };
+
       // function sendMessage()
       function sendMessage()
       {

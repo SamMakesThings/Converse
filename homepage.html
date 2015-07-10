@@ -74,6 +74,11 @@
         ref.unauth();
       }
 
+      window.onbeforeunload = function ()
+      {
+        customUnAuth();
+      };
+
       // Adds link functionality to conversation list
       function redirectToConversation(convoId)
       {
