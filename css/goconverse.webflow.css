@@ -125,6 +125,9 @@ p {
   font-style: normal;
   text-decoration: none;
 }
+.button.widebutton.superbutton {
+  padding: 14px 100px;
+}
 .navigation {
   width: 100%;
   padding: 14px 20px;
