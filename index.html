@@ -31,6 +31,31 @@
         background-color: #e5e5e5; !important
     }
   </style>
+  <script src="https://cdn.firebase.com/js/client/2.2.6/firebase.js"></script>
+  <script>
+      // Checks the user's auth state
+      var ref = new Firebase("https://goconverse.firebaseio.com");
+
+      var userId;
+
+      function authDataCallback(authData)
+      {
+      var usersRef = new Firebase("https://goconverse.firebaseio.com/users");
+        if (authData)
+        {
+        console.log("User " + authData.uid + " is logged in with " + authData.provider);
+        console.log("Redirecting to homepage.html");
+        window.location = "homepage.html";
+        }
+        else
+        {
+        console.log("User is not logged in.");
+        }
+      };
+
+      // Register the callback to be fired every time auth state changes
+      ref.onAuth(authDataCallback);
+  </script>
 </head>
 <body>
   <a class="w-inline-block go-top" href="#top" data-ix="hide"></a>
@@ -167,7 +192,7 @@
             <div><img src="images/rocket_ffffff_100.png" width="50" alt="54da0caac06675ff4ccfe7f5_rocket_ffffff_100.png">
             </div>
             <div class="div-spc">
-              <h1><span class="realway">7</span></h1>
+              <h1><span class="realway">9</span></h1>
             </div>
             <div class="div-spc">
               <h4>Countries (so far)</h4>
@@ -191,7 +216,7 @@
             <div><img src="images/users_ffffff_100.png" width="50" alt="54da2167781f27014df68ebb_users_ffffff_100.png">
             </div>
             <div class="div-spc">
-              <h1><span class="realway">12</span></h1>
+              <h1><span class="realway">15</span></h1>
             </div>
             <div class="div-spc">
               <h4>Worldwide users</h4>
