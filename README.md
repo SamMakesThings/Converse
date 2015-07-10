@@ -24,6 +24,8 @@ Currently working on:
 Planned features (in rough chronological order):
 - Account email verification
 - Email notifications for new messages
+- Custom user profile pictures
 - Profile page, to view information about each user
+- Image messaging
 - "Status updates" where users can see updates from people they've talked to
 - News on main page relevant to people they've talked to
