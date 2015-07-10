@@ -34,9 +34,28 @@
   <!-- Begin non-Webflow code -->
   <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
   <script>
-	var ref = new Firebase("https://goconverse.firebaseio.com");
+  // Checks the user's auth state
+  var ref = new Firebase("https://goconverse.firebaseio.com");
 
+  var userId;
 
+  function authDataCallback(authData)
+  {
+  var usersRef = new Firebase("https://goconverse.firebaseio.com/users");
+    if (authData)
+    {
+    console.log("User " + authData.uid + " is logged in with " + authData.provider);
+    console.log("Redirecting to homepage.html");
+    window.location = "homepage.html";
+    }
+    else
+    {
+    console.log("User is not logged in.");
+    }
+  };
+
+  // Register the callback to be fired every time auth state changes
+  ref.onAuth(authDataCallback);
 
 	// Firebase user authentication (email and password only)
 	function logIn()

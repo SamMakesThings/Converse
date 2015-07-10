@@ -61,10 +61,6 @@
 			// User matching algorithm
 			var userOneRef = new Firebase(("https://goconverse.firebaseio.com/users/").concat(userId));
 
-      userOneRef.update({
-        isOnline: 1
-      });
-
 			// Filters out same-country users and sorts by number of conversations
 			var usersRef = new Firebase("https://goconverse.firebaseio.com/users");
 
