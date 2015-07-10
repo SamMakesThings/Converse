@@ -61,8 +61,11 @@
 			// User matching algorithm
 			var userOneRef = new Firebase(("https://goconverse.firebaseio.com/users/").concat(userId));
 
-			// Filters out same-country users and sorts by number of conversations
+      userOneRef.update({
+        isOnline: 1
+      });
 
+			// Filters out same-country users and sorts by number of conversations
 			var usersRef = new Firebase("https://goconverse.firebaseio.com/users");
 
 			var usersList = [];
@@ -91,6 +94,12 @@
 				{
 				return a.conversationsCount - b.conversationsCount;
 				});
+
+        // Sort users by online status in descending order
+        var sortedUserList = usersList.sort(function(a, b)
+        {
+        return b.isOnline - a.isOnline;
+        });
 
 
 				var userTwoId = sortedUserList[0].userid;
@@ -212,7 +221,6 @@
 
 			var urladd="?conversationId=" + conversationId;
 			window.location.href = "http://www.conversewithothers.co/messaging.html" + urladd;
-
 
 			},
 			function (errorObject)
