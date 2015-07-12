@@ -14,11 +14,11 @@ Current features:
 - Timestamps
 - Home page for logged-in users
 - Updated homepage with custom graphics
+- User can see if their partners are online
 
 Currently working on:
-- Tidier source files
-- Platform security
-- Analytics
+- Email notifications
+- Icebreakers and conversation starters
 - Bug fixes
 
 Planned features (in rough chronological order):
