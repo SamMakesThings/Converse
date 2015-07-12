@@ -173,6 +173,16 @@
             document.getElementById("user two name").innerHTML = userTwoName;
             document.getElementById("user two info").innerHTML = userTwoRefTwo.interests;
             document.getElementById("user two info").insertAdjacentHTML("beforeend", "<br>Lives in " + userTwoRefTwo.city + ", &nbsp" + userTwoRefTwo.country);
+            if (userTwoRefTwo.isOnline != 1)
+            {
+              document.getElementById("user two pic").setAttribute("src", "images/BWUserPic.png");
+              document.getElementById("user two info").insertAdjacentHTML("beforeend", "<br>" + userTwoRefTwo.firstname + " is offline.");
+            }
+            else
+            {
+              document.getElementById("user two pic").setAttribute("src", "images/UserTwoPic.png");
+              document.getElementById("user two info").insertAdjacentHTML("beforeend", "<br>" + userTwoRefTwo.firstname + " is online.");
+            }
           })
         }
         else
@@ -239,7 +249,7 @@
           </div>
         </div>
       </div>
-      <div class="w-col w-col-3 person"><img class="user-self" src="images/UserTwoPic.png" width="196">
+      <div class="w-col w-col-3 person"><img class="user-self" id="user two pic" src="images/UserTwoPic.png" width="196">
         <h3 id="user two name">Please wait</h3>
         <p id="user two info">Loading user info
           <br>If this persists, please report the error.</p>
