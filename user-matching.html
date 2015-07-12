@@ -62,16 +62,22 @@
 			var userOneRef = new Firebase(("https://goconverse.firebaseio.com/users/").concat(userId));
 
       // Update isOnline with online status
-      userOneRef.update({
-        isOnline: 1
-      });
-
-      function customUnAuth()
+      function customUnAuth(onOrOff)
       {
         userOneRef.update({
-          isOnline: 0
+          isOnline: onOrOff
         });
       }
+
+      window.onload = function ()
+      {
+        customUnAuth(1);
+      };
+
+      window.onbeforeunload = function ()
+      {
+        customUnAuth(0);
+      };
 
 			// Filters out same-country users and sorts by number of conversations
 			var usersRef = new Firebase("https://goconverse.firebaseio.com/users");
