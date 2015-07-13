@@ -17,12 +17,12 @@ Current features:
 - User can see if their partners are online
 
 Currently working on:
+- Account email verification
 - Email notifications
 - Icebreakers and conversation starters
 - Bug fixes
 
 Planned features (in rough chronological order):
-- Account email verification
 - Email notifications for new messages
 - Custom user profile pictures
 - Profile page, to view information about each user
