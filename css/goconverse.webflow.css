@@ -1184,6 +1184,9 @@ html.w-mod-js *[data-ix="hide-scrollnav"] {
   .trianglething {
     margin-top: -2px;
   }
+  .gone {
+    display: none;
+  }
 }
 @media (max-width: 479px) {
   .banner {
@@ -1249,5 +1252,8 @@ html.w-mod-js *[data-ix="hide-scrollnav"] {
   }
   .special {
     margin-top: 10px;
+  }
+  .gone {
+    display: none;
   }
 }
