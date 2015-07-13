@@ -836,7 +836,7 @@ p {
   background-color: #00c2a2;
   background-image: -webkit-linear-gradient(#00c2a2 18%, #00a88c 97%);
   background-image: linear-gradient(#00c2a2 18%, #00a88c 97%);
-  box-shadow: rgba(0, 0, 0, 0.24) 1px 1px 3px 0px;
+  box-shadow: rgba(0, 0, 0, 0.22) 1px 1px 3px 0px;
   text-align: left;
 }
 .message.right {
@@ -847,7 +847,7 @@ p {
   background-color: #fec700;
   background-image: -webkit-linear-gradient(#fec700, #edba00);
   background-image: linear-gradient(#fec700, #edba00);
-  box-shadow: rgba(0, 0, 0, 0.24) 1px 1px 3px 0px;
+  box-shadow: rgba(0, 0, 0, 0.22) 1px 1px 3px 0px;
   color: black;
   text-align: right;
 }
@@ -874,7 +874,7 @@ p {
   border-style: solid;
   border-color: white;
   background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.24) 1px 1px 5px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.22) 1px 1px 5px 0px inset;
 }
 .messaging-div.body-div.recent-conversations {
   padding-top: 0px;
@@ -914,7 +914,7 @@ p {
 .person {
   display: block;
   padding: 15px;
-  box-shadow: rgba(0, 0, 0, 0.24) 1px 1px 5px 0px;
+  box-shadow: rgba(0, 0, 0, 0.22) 1px 1px 5px 0px;
 }
 .loading-icon {
   display: block;
@@ -1115,6 +1115,16 @@ html.w-mod-js *[data-ix="hide-scrollnav"] {
   .messaging {
     box-shadow: none;
   }
+  .message.left {
+  margin-right: 30%;
+  }
+  .message.right {
+    margin-left: 30%;
+  }
+  .messaging-div.shadowless {
+    margin-right: -10px;
+    margin-left: -10px;
+  }
 }
 @media (max-width: 767px) {
   .banner.inner {
@@ -1162,6 +1172,18 @@ html.w-mod-js *[data-ix="hide-scrollnav"] {
   .messaging {
     box-shadow: none;
   }
+  .messaging-div.shadowless {
+  margin-bottom: 0px;
+  }
+  .trianglething {
+    margin-top: -10px;
+  }
+  .messaging-div.shadowless {
+  margin-bottom: 0px;
+  }
+  .trianglething {
+    margin-top: -2px;
+  }
 }
 @media (max-width: 479px) {
   .banner {
@@ -1205,6 +1227,27 @@ html.w-mod-js *[data-ix="hide-scrollnav"] {
     display: none;
   }
   .messaging {
+    margin-top: 15px;
     box-shadow: none;
+  }
+  .message.left {
+    margin-right: 25%;
+  }
+  .message.right {
+    margin-left: 25%;
+  }
+  .messaging-div.shadowless {
+    margin: 0px;
+  }
+  .messaging-row.user-info {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+  .trianglething {
+    margin-top: -10px;
+  }
+  .special {
+    margin-top: 10px;
   }
 }
