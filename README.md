@@ -5,7 +5,6 @@ Converse is a project that originated from the November Kansas City Startup Week
 
 Current features:
 - Users can register their email and password
-- Associated additional information with user accounts (name, age, country, etc.)
 - Users can log in and log out
 - Users able to start new conversations
 - Successfully hosted on Azure
