@@ -96,6 +96,13 @@
         var time = new Date();
         var timestamp = time.toLocaleString();
         var sentBy = userId;
+        currentConversationRef.child("mostRecent").set(
+        {
+          message: message,
+          timestamp: timestamp,
+          author: userId
+        })
+
         currentConversationRef.child("messages").push(
           {
             message: message,
@@ -104,15 +111,8 @@
           })
         document.getElementById("field").value="";
 
-        currentConversationRef.child("mostRecent").set(
-        {
-          message: message,
-          timestamp: timestamp,
-          author: userId
-        })
-
         // Add user file references to most recent message
-        userOneRef.on("value", function(snapshot)
+        userOneRef.once("value", function(snapshot)
         {
           if (snapshot)
           {
@@ -147,7 +147,7 @@
       }
 
       // Populate user name sections
-      userOneRef.on("value", function(userInfoRef)
+      userOneRef.once("value", function(userInfoRef)
       {
         if (userInfoRef)
         {
@@ -165,7 +165,7 @@
           var userTwoId = currentConversationParticipants.otheruserid;
 
           var userTwoRef = new Firebase("https://goconverse.firebaseio.com/users/" + userTwoId);
-          userTwoRef.on("value", function(userInfoRefTwo)
+          userTwoRef.once("value", function(userInfoRefTwo)
           {
             var userTwoRefTwo = userInfoRefTwo.val();
             var userTwoName = userTwoRefTwo.firstname + " " + userTwoRefTwo.lastname;
