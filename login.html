@@ -85,6 +85,18 @@
 		}
 		);
 	};
+
+  function passwordReset()
+  {
+    ref.resetPassword({
+      email : document.getElementById("Email").value}, function(error) {
+        if (error === null) {
+        console.log("Password reset email sent successfully");
+      } else {
+        console.log("Error sending password reset email:", error);
+      }
+    });
+  }
   </script>
   <!-- End non-Webflow code -->
 </head>
@@ -122,6 +134,7 @@
           <input class="w-input login text-field" id="Password" type="password" placeholder="Password" name="Password" required="required" data-name="Password" onkeydown="if (event.keyCode == 13) logIn()">
           <input class="w-button button s-button" id="Log In" type="button" value="Log In" onclick="logIn()" data-wait="Please wait...">
         </form>
+        <a href="#" onclick="passwordReset()">Click here to reset your password</a>
       </div>
     </div>
   </div><img src="images/tri-color.png" alt="54da1e68c06675ff4ccfe95a_tri-color.png">
