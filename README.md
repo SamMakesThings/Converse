@@ -14,10 +14,11 @@ Current features:
 - Home page for logged-in users
 - Updated homepage with custom graphics
 - User can see if their partners are online
+- Email notifications
 
 Currently working on:
+- Profile pictures
 - Account email verification
-- Email notifications
 - Icebreakers and conversation starters
 - Bug fixes
 
